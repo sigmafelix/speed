@@ -3,29 +3,29 @@
 \title{Spatially Enhanced and Entropy-Derived Contiguity Matrix (SpEED)}
 \usage{
 speedmat(sf,
-         mode = "CDE", # "CE"/"DE"/"CDE"
-         input_vars = c(), # Contiguity Distance Entropy
-         bandwidth = NULL, # bandwidth: Currently only supports gaussian
-         q_jsd = 0.05,     # quantile of j-s divergence
-         kneigh = NULL,    # k-nearest neighbor for point data
-         queen = TRUE,     # Queen's contiguity for "C" mode for polygon data
+         mode = "CDE",
+         input_vars = c(),
+         bandwidth = NULL,
+         q_jsd = 0.05,
+         kneigh = NULL,
+         queen = TRUE,
          cutoff_dist = NULL,
          cutoff_weightd = 0.001,
          cutoff_weightc = 0.001,
          sup_factor = NULL)
          }
 \arguments{
-\item{sf}{a `sf` object}
+\item{sf}{a \code{sf} object}
 \item{mode}{Mode of generation}
 \item{input_vars}{input variables to compute Jensen-Shannon divergence}
 \item{bandwidth}{bandwidth distance for computing distance-based weights}
 \item{q_jsd}{Quantile (centile) of Jensen-Shannon divergence. Less than `q_jsd` will be left for the subsequent analysis.}
 \item{kneigh}{the number of nearest points when the k-nearest neighbor method is applied for point dataset}
 \item{queen}{Queen's contiguity when polygon datasets will be used}
-\item{cutoff_distance}{same as `bandwidth` otherwise set.}
+\item{cutoff_distance}{same as \code{bandwidth} otherwise set.}
 \item{cutoff_weightd}{threshold for filtering excessively low distance-based weights}
-\item{cutoff_weightc}{threshold for filtering weights if they are excessively low after the addition of two weight matrices (applied when `mode=="CDE"`)}
-\item{sup_factor}{suppressing factor for divergence-based weights. 1 if `NULL` is retained.}
+\item{cutoff_weightc}{threshold for filtering weights if they are excessively low after the addition of two weight matrices (applied when \code{mode=="CDE"})}
+\item{sup_factor}{suppressing factor for divergence-based weights. 1 if \code{NULL} is retained.}
 }
 \description{
 }
