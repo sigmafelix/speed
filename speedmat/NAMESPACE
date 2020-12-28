@@ -1,0 +1,6 @@
+exportPattern("^[[:alpha:]]+")
+import(philentropy)
+import(dplyr)
+import(nngeo)
+import(sf)
+import(spdep)
