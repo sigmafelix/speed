@@ -10,7 +10,7 @@ speedmat <- function(sf,
                      cutoff_dist = NULL,
                      cutoff_weightd = 0.001,
                      cutoff_weightc = 0.001,
-                     sup_factor = NULL){
+                     sup_factor = 0.5){
     if (is.null(bandwidth) & grepl("D", mode))
         stop("No bandwidth was entered")
     if (length(input_vars) == 0)
@@ -34,9 +34,6 @@ speedmat <- function(sf,
     sf_ent <- sf_ent * (sf_ent <= quantile(sf_ent, q_jsd))
     sf_ent_ex <- exp(-1 * sf_ent)
     sf_ent_f <- (sf_ent_ex * (sf_ent_ex != 1))
-    if (!is.null(sup_factor)){
-        sf_ent_f <- sf_ent_f * sup_factor
-    }
 
     if (grepl("C", mode)){
         if (queen){
@@ -55,10 +52,9 @@ speedmat <- function(sf,
             sf_touch_nn <- sf_touch$nn
             diag(sf_touch_nn) <- FALSE
             sf_touch <- sf_touch_nn
-                #knn2nb %>%
-                #nb2mat
-        }
-        sf_invdv <- sf_touch + sf_ent_f
+            }
+        # 122820
+        sf_invdv <- ((1-sup_factor)*sf_touch) + (sup_factor * sf_ent_f)
     }
     if (grepl("D", mode))
     {
@@ -67,12 +63,9 @@ speedmat <- function(sf,
         } else {
             sf_interd <- as(st_distance(sf), 'matrix')
         }
-        #if (!is.null(cutoff_dist)){
         sf_interd <- sf_interd * (sf_interd <= cutoff_dist)
-        #}
         sf_invd <- exp(-1 * ((sf_interd^2)/(bandwidth^2)))
         sf_invd <- sf_invd * (sf_invd != 1)
-        #
         diag(sf_invd) <- 0
 
         if (grepl("^C", mode)) {
@@ -85,10 +78,10 @@ speedmat <- function(sf,
                 sf_touch <- sf_touch_nn
             }
 
-            sf_invdv <- (sf_touch * sf_invd) + sf_ent_f
+            sf_invdv <- ((1-sup_factor) * (sf_touch * sf_invd)) + (sup_factor * sf_ent_f)
             sf_invdv <- sf_invdv * (sf_invdv >= cutoff_weightc)
         } else {
-            sf_invdv <- (sf_invd * (sf_invd >= cutoff_weightd)) + sf_ent_f
+            sf_invdv <- ((1-sup_factor)* (sf_invd * (sf_invd >= cutoff_weightd))) + (sup_factor * sf_ent_f)
             sf_invdv <- sf_invdv * (sf_invdv >= cutoff_weightc)
         }
     }
