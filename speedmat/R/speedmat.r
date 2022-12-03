@@ -1,6 +1,31 @@
-## Insang Song (isong@uoregon.edu)
-## Spatially Enhanced and Entropy-Derived MATrix (SpEED-MAT)
-speedmat <- function(sf,
+### SpEED function code
+
+cppjsd = "
+#include <Rcpp.h>
+
+// [[Rcpp::export]]
+double cppJSD(const Rcpp::NumericVector& x, const Rcpp::NumericVector& y) {
+  return (0.5 * (Rcpp::sum(x * Rcpp::log(x/((x+y)/2))) +
+                          Rcpp::sum(y * Rcpp::log(y/((x+y)/2)))));
+}
+
+// [[Rcpp::export('distJSD')]]
+Rcpp::NumericMatrix foo(const Rcpp::NumericMatrix& inMatrix) {
+  size_t cols = inMatrix.ncol();
+  Rcpp::NumericMatrix result(cols, cols);
+  for (size_t i = 0; i < cols; i++) {
+    for (size_t j = 0; j < i; j++) {
+      result(i,j) = cppJSD(inMatrix(Rcpp::_, i), inMatrix(Rcpp::_, j));
+    }
+  }
+  return result;
+}
+"
+Rcpp::sourceCpp(code = cppjsd)
+
+
+
+speedmat_old <- function(sf,
                      mode = "CDE", # "CE"/"DE"/"CDE"
                      input_vars = c(), # Contiguity Distance Entropy
                      bandwidth = NULL, # bandwidth: Currently only supports gaussian
@@ -95,3 +120,106 @@ speedmat <- function(sf,
     speedmat <- sf_invdv / apply(sf_invdv, 1, sum)
     return(speedmat)
 }
+
+
+#' @title SpEED matrix for matching analysis
+#' @description Returns spatially enhanced and entropy-derived matrix (SpEED) for matching analysis
+#' @param data sf object. Should include outcome, treatment, and coordinates (if \code{speed_mode == "coord"})
+#' @param formula formula. in \code{y ~ x} form.
+#' @param outcome character(1). Outcome variable name. default is \code{'outcome'}
+#' @param treatment character(1). Treatment variable name. default is \code{'treatment'}
+#' @param mode_speed character(1). One of \code{'product'} \code{(JSD\%*\%D)} or \code{'coord'} \code{(JSD(cbind(covariates, X, Y)))}
+#' @param coords character(2). Names of the columns with x- and y-dimension coordinates. Only valid for \code{mode_speed=='coord'}
+#' @param coords_factor numeric(1). Coordinate weights after standardization. Only valid for \code{mode_speed=='coord'}
+#' @author Insang Song (sigmafelix@hotmail.com)
+#' 
+speedmat = function(data,
+                    formula,
+                    outcome = 'outcome',
+                    treatment = 'treatment',
+                    mode_speed = 'product',
+                    coords = NULL,
+                    coords_factor = NULL) {
+    stopifnot("The argument mode_speed should be one of 'product' or 'coord'" = mode_speed %in% c('product', 'coord'))
+    stopifnot("No coords and coords_factor arguments. Check if you set the correct value for mode_speed" = (mode_speed == 'coord' & (is.null(coords) | is.null(coords_factor))))
+    
+    speedmat_res = 
+        switch(mode_speed,
+              product = speedmat.jsdist(data, formula, outcome, treatment),
+              coord = speedmat.coord(data, formula, outcome, treatment, coords, coords_factor))
+    return(speedmat_res)
+    }
+
+
+#' @title SpEED matrix by accounting for the weighted coordinate variables
+#' @description Returns the Jensen-Shannon divergence with weighted coordinates
+#' @param data sf object. Should include outcome, treatment, and coordinates 
+#' @param formula formula. in \code{y ~ x} form.
+#' @param outcome character(1). Outcome variable name. default is \code{'outcome'}
+#' @param treatment character(1). Treatment variable name. default is \code{'treatment'}
+#' @param coords character(2). Names of the columns with x- and y-dimension coordinates. 
+#' @param coords_factor numeric(1). Coordinate weights after standardization. 
+#' @author Insang Song (sigmafelix@hotmail.com)
+#' 
+#'
+speedmat.coord = function(data, formula, outcome = 'outcome', treatment = 'treatment', coords = c('X', 'Y'), coords_factor = 10) {
+    
+    scale_minmax = function(x) x / (max(x) - min(x))
+    mat_mm = model.matrix(formula, data)[,-1]
+    # formula_ext = update.formula(formula, as.formula(paste('.~.+', outcome)))
+    formula_ext = formula
+    mat_mf = model.frame(formula_ext, data)
+    # 092422
+    mat_mf = mat_mf[, sapply(mat_mf, function(x) length(unique(x)) != 0 )]
+
+    print(dim(mat_mf))
+    mat_mmsc = mat_mm %>% 
+        apply(2, function(x) abs(scale_minmax(x)) + scale_minmax(x) + 0.001)
+        # apply(2, function(x)  as.vector(scale(x)) + abs(min(as.vector(scale(x)))) + 0.001)
+        #apply(2, function(x) if (length(unique(x)) > 2) as.vector(scale(x)) + abs(min(as.vector(scale(x)))) + 0.001 else x)
+    mat_mmsc[,coords] = mat_mmsc[,coords] * coords_factor
+    mat_jsd = distJSD(t(mat_mmsc))#philentropy::JSD(mat_mmsc)
+    mat_jsdt= t(mat_jsd)
+    mat_jsd = mat_jsd + mat_jsdt
+    gc()
+    #mat_jsd_pm = pairmatch(mat_jsd)
+    return(mat_jsd) #mat_jsd instead?
+
+}
+
+#' @title SpEED matrix by multiplying Jensen-Shannon divergence and geodesic distance (in km)
+#' @description Returns a SpEED matrix, which is the product of Jensen-Shannon divergence and geographic distance matrix
+#' @param data sf object. Should include outcome, treatment, and coordinates 
+#' @param formula formula. in \code{y ~ x} form.
+#' @param outcome character(1). Outcome variable name. default is \code{'outcome'}
+#' @param treatment character(1). Treatment variable name. default is \code{'treatment'}
+#' @author Insang Song (sigmafelix@hotmail.com)
+#' 
+speedmat.jsdist = function(data, formula, outcome = 'outcome', treatment = 'treatment') {
+    
+    scale_minmax = function(x) x / (max(x) - min(x))
+    mat_mm = model.matrix(formula, data)[,-1]
+    # formula_ext = update.formula(formula, as.formula(paste('.~.+', outcome)))
+    formula_ext = formula
+    mat_mf = model.frame(formula_ext, data)
+    # 092422
+    mat_mf = mat_mf[, sapply(mat_mf, function(x) length(unique(x)) != 0 )]
+
+    print(dim(mat_mf))
+    mat_mmsc = mat_mm %>% 
+        apply(2, function(x) abs(scale_minmax(x)) + scale_minmax(x) + 0.001)
+        # apply(2, function(x)  as.vector(scale(x)) + abs(min(as.vector(scale(x)))) + 0.001)
+        #apply(2, function(x) if (length(unique(x)) > 2) as.vector(scale(x)) + abs(min(as.vector(scale(x)))) + 0.001 else x)
+    #  mat_mmsc[,coords] = mat_mmsc[,coords] * coords_factor
+    mat_jsd = distJSD(t(mat_mmsc))#philentropy::JSD(mat_mmsc)
+    mat_jsdt= t(mat_jsd)
+    mat_jsd = mat_jsd + mat_jsdt
+
+    geodist = sf::st_distance(data) / 1e3
+    mat_jsdd = mat_jsd * geodist
+    gc()
+    #mat_jsd_pm = pairmatch(mat_jsd)
+    return(mat_jsdd) #mat_jsd instead?
+
+}
+
