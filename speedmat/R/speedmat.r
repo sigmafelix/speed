@@ -1,30 +1,5 @@
 ### SpEED function code
-
-cppjsd = "
-#include <Rcpp.h>
-
-// [[Rcpp::export]]
-double cppJSD(const Rcpp::NumericVector& x, const Rcpp::NumericVector& y) {
-  return (0.5 * (Rcpp::sum(x * Rcpp::log(x/((x+y)/2))) +
-                          Rcpp::sum(y * Rcpp::log(y/((x+y)/2)))));
-}
-
-// [[Rcpp::export('distJSD')]]
-Rcpp::NumericMatrix foo(const Rcpp::NumericMatrix& inMatrix) {
-  size_t cols = inMatrix.ncol();
-  Rcpp::NumericMatrix result(cols, cols);
-  for (size_t i = 0; i < cols; i++) {
-    for (size_t j = 0; j < i; j++) {
-      result(i,j) = cppJSD(inMatrix(Rcpp::_, i), inMatrix(Rcpp::_, j));
-    }
-  }
-  return result;
-}
-"
-Rcpp::sourceCpp(code = cppjsd)
-
-
-
+#' @export
 speedmat_old <- function(sf,
                      mode = "CDE", # "CE"/"DE"/"CDE"
                      input_vars = c(), # Contiguity Distance Entropy
@@ -132,6 +107,8 @@ speedmat_old <- function(sf,
 #' @param coords character(2). Names of the columns with x- and y-dimension coordinates. Only valid for \code{mode_speed=='coord'}
 #' @param coords_factor numeric(1). Coordinate weights after standardization. Only valid for \code{mode_speed=='coord'}
 #' @author Insang Song (sigmafelix@hotmail.com)
+#' @export
+#' @useDynLib speedmat
 #' 
 speedmat = function(data,
                     formula,
@@ -140,8 +117,12 @@ speedmat = function(data,
                     mode_speed = 'product',
                     coords = NULL,
                     coords_factor = NULL) {
-    stopifnot("The argument mode_speed should be one of 'product' or 'coord'" = mode_speed %in% c('product', 'coord'))
-    stopifnot("No coords and coords_factor arguments. Check if you set the correct value for mode_speed" = (mode_speed == 'coord' & (is.null(coords) | is.null(coords_factor))))
+    if (!mode_speed %in% c('product', 'coord')) {
+        stop("The argument mode_speed should be one of 'product' or 'coord'")
+    }
+    if ((mode_speed == 'coord' && (is.null(coords) | is.null(coords_factor)))) {
+        stop("No coords and coords_factor arguments. Check if you set the correct value for mode_speed")
+    }
     
     speedmat_res = 
         switch(mode_speed,
@@ -160,7 +141,7 @@ speedmat = function(data,
 #' @param coords character(2). Names of the columns with x- and y-dimension coordinates. 
 #' @param coords_factor numeric(1). Coordinate weights after standardization. 
 #' @author Insang Song (sigmafelix@hotmail.com)
-#' 
+#' @export
 #'
 speedmat.coord = function(data, formula, outcome = 'outcome', treatment = 'treatment', coords = c('X', 'Y'), coords_factor = 10) {
     
@@ -194,6 +175,7 @@ speedmat.coord = function(data, formula, outcome = 'outcome', treatment = 'treat
 #' @param outcome character(1). Outcome variable name. default is \code{'outcome'}
 #' @param treatment character(1). Treatment variable name. default is \code{'treatment'}
 #' @author Insang Song (sigmafelix@hotmail.com)
+#' @export
 #' 
 speedmat.jsdist = function(data, formula, outcome = 'outcome', treatment = 'treatment') {
     
