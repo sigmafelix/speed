@@ -106,6 +106,9 @@ speedmat_old <- function(sf,
 #' @param mode_speed character(1). One of \code{'product'} \code{(JSD\%*\%D)} or \code{'coord'} \code{(JSD(cbind(covariates, X, Y)))}
 #' @param coords character(2). Names of the columns with x- and y-dimension coordinates. Only valid for \code{mode_speed=='coord'}
 #' @param coords_factor numeric(1). Coordinate weights after standardization. Only valid for \code{mode_speed=='coord'}
+#' @param caliper_s numeric(1). Caliper for distance
+#' @param caliper_jsd numeric(1). Caliper for divergence value
+#' @param scale logical(1). Min-max scaling for both distance and divergence, resulting in range [0,1]
 #' @author Insang Song (sigmafelix@hotmail.com)
 #' @export
 #' @useDynLib speedmat
@@ -116,7 +119,10 @@ speedmat = function(data,
                     treatment = 'treatment',
                     mode_speed = 'product',
                     coords = NULL,
-                    coords_factor = NULL) {
+                    coords_factor = NULL, 
+                    caliper_s = NULL, 
+                    caliper_jsd = NULL, 
+                    scale = FALSE) {
     if (!mode_speed %in% c('product', 'coord')) {
         stop("The argument mode_speed should be one of 'product' or 'coord'")
     }
@@ -126,7 +132,7 @@ speedmat = function(data,
     
     speedmat_res = 
         switch(mode_speed,
-              product = speedmat.jsdist(data, formula, outcome, treatment),
+              product = speedmat.jsdist(data, formula, outcome, treatment, caliper_s = caliper_s, caliper_jsd = caliper_jsd, scale = scale),
               coord = speedmat.coord(data, formula, outcome, treatment, coords, coords_factor))
     return(speedmat_res)
     }
@@ -174,10 +180,13 @@ speedmat.coord = function(data, formula, outcome = 'outcome', treatment = 'treat
 #' @param formula formula. in \code{y ~ x} form.
 #' @param outcome character(1). Outcome variable name. default is \code{'outcome'}
 #' @param treatment character(1). Treatment variable name. default is \code{'treatment'}
+#' @param caliper_s numeric(1). Caliper for distance
+#' @param caliper_jsd numeric(1). Caliper for divergence value
+#' @param scale logical(1). Min-max scaling for both distance and divergence, resulting in range [0,1]
 #' @author Insang Song (sigmafelix@hotmail.com)
 #' @export
 #' 
-speedmat.jsdist = function(data, formula, outcome = 'outcome', treatment = 'treatment') {
+speedmat.jsdist = function(data, formula, outcome = 'outcome', treatment = 'treatment', caliper_s = NULL, caliper_jsd = NULL, scale = FALSE) {
     
     scale_minmax = function(x) x / (max(x) - min(x))
     mat_mm = model.matrix(formula, data)[,-1]
@@ -188,8 +197,7 @@ speedmat.jsdist = function(data, formula, outcome = 'outcome', treatment = 'trea
     mat_mf = mat_mf[, sapply(mat_mf, function(x) length(unique(x)) != 0 )]
 
     print(dim(mat_mf))
-    mat_mmsc = mat_mm %>% 
-        apply(2, function(x) abs(scale_minmax(x)) + scale_minmax(x) + 0.001)
+    mat_mmsc = apply(mat_mm, 2, function(x) abs(scale_minmax(x)) + scale_minmax(x) + 0.001)
         # apply(2, function(x)  as.vector(scale(x)) + abs(min(as.vector(scale(x)))) + 0.001)
         #apply(2, function(x) if (length(unique(x)) > 2) as.vector(scale(x)) + abs(min(as.vector(scale(x)))) + 0.001 else x)
     #  mat_mmsc[,coords] = mat_mmsc[,coords] * coords_factor
@@ -197,10 +205,23 @@ speedmat.jsdist = function(data, formula, outcome = 'outcome', treatment = 'trea
     mat_jsdt= t(mat_jsd)
     mat_jsd = mat_jsd + mat_jsdt
 
-    geodist = sf::st_distance(data) / 1e3
-    mat_jsdd = mat_jsd * geodist
+    mat_geodist = sf::st_distance(data) / 1e3
+    if (!is.null(caliper_s)) {
+        mat_geodist[which(mat_geodist > caliper_s)] = NA
+
+    }
+    if (!is.null(caliper_jsd)) {
+        mat_jsd[which(mat_jsd > caliper_jsd)] = NA
+    }
+    if (scale) {
+        mat_geodist = (mat_geodist - min(mat_geodist, na.rm = TRUE)) / max(mat_geodist, na.rm = TRUE)
+        mat_jsd = (mat_jsd - min(mat_jsd, na.rm = TRUE)) / max(mat_jsd, na.rm = TRUE)
+        
+    }
     gc()
     #mat_jsd_pm = pairmatch(mat_jsd)
+    # Hadamard product
+    mat_jsdd = mat_jsd * mat_geodist
     return(mat_jsdd) #mat_jsd instead?
 
 }
