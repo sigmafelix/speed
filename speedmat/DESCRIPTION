@@ -1,7 +1,7 @@
 Package: speedmat
 Type: Package
 Title: Spatially Enhanced and Entropy-Derived Contiguity Matrix (SpEED)
-Version: 0.2.0
+Version: 0.3.0
 Author: Insang Song
 Maintainer: Insang Song <sigmafelix@hotmail.com>
 Description: A package for computing spatially enhanced and entropy-derived matrix for matching analysis

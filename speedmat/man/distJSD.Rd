@@ -9,7 +9,10 @@ distJSD2(inMatrixTr, inMatrixCo)
 }
 \arguments{
 \item{inMatrix}{a positive-valued numeric matrix.}
+\item{inMatrixTr}{a positive-valued numeric matrix including covariates of treated units.}
+\item{inMatrixCo}{a positive-valued numeric matrix including covariates of controlled units.}
+
 }
 \description{
-Computes Jensen-Shannon divergence, which is based on Kullback-Leibler divergence. deq(\text{JSD}(A||B)=\frac{1}{2} \left( \text{KL}(A||M)+\text{KL}(B||M) \right))
+Computes Jensen-Shannon divergence, which is based on Kullback-Leibler divergence. \eqn(\text{JSD}(A||B)=\frac{1}{2} \left( \text{KL}(A||M)+\text{KL}(B||M) \right))
 }

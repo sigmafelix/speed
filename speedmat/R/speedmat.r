@@ -165,7 +165,7 @@ speedmat.coord = function(data, formula, outcome = 'outcome', treatment = 'treat
 
     print(dim(mat_mf))
     mat_mmsc = mat_mm %>% 
-        apply(2, function(x) abs(scale_minmax(x)) + scale_minmax(x) + 0.001)
+        apply(2, function(x) scale_minmax(x) + 0.001)
         # apply(2, function(x)  as.vector(scale(x)) + abs(min(as.vector(scale(x)))) + 0.001)
         #apply(2, function(x) if (length(unique(x)) > 2) as.vector(scale(x)) + abs(min(as.vector(scale(x)))) + 0.001 else x)
     mat_mmsc[,coords] = mat_mmsc[,coords] * coords_factor
@@ -210,11 +210,11 @@ speedmat.jsdist = function(data, formula, outcome = 'outcome', treatment = 'trea
 
     mat_geodist = sf::st_distance(data) / 1e3
     if (!is.null(caliper_s)) {
-        mat_geodist[which(mat_geodist > caliper_s)] = NA
+        mat_geodist[which(mat_geodist > caliper_s)] = 1/min(mat_geodist)
 
     }
     if (!is.null(caliper_jsd)) {
-        mat_jsd[which(mat_jsd > caliper_jsd)] = NA
+        mat_jsd[which(mat_jsd > caliper_jsd)] = 1/min(mat_jsd)
     }
     if (scale) {
         mat_geodist = scale_minmax(mat_geodist) + 0.001
@@ -275,11 +275,11 @@ speedmat.jsdist.m = function(data, formula, outcome = 'outcome', treatment = 'tr
     mat_geodist = sf::st_distance(data_tr, data_co) 
 
     if (!is.null(caliper_s)) {
-        mat_geodist[which(mat_geodist > caliper_s)] = NA
+        mat_geodist[which(mat_geodist > caliper_s)] = 1/min(mat_geodist)
 
     }
     if (!is.null(caliper_jsd)) {
-        mat_jsd[which(mat_jsd > caliper_jsd)] = NA
+        mat_jsd[which(mat_jsd > caliper_jsd)] = 1/min(mat_jsd)
     }
     if (scale) {
         mat_geodist = scale_minmax(mat_geodist) + 0.001
