@@ -5,6 +5,7 @@
 \title{Jensen-Shannon divergence}
 \usage{
 distJSD(inMatrix)
+distJSD2(inMatrixTr, inMatrixCo)
 }
 \arguments{
 \item{inMatrix}{a positive-valued numeric matrix.}

@@ -97,6 +97,10 @@ speedmat_old <- function(sf,
 }
 
 
+
+scale_minmax = function(x) {(x - min(x)) / (max(x) - min(x))}
+
+
 #' @title SpEED matrix for matching analysis
 #' @description Returns spatially enhanced and entropy-derived matrix (SpEED) for matching analysis
 #' @param data sf object. Should include outcome, treatment, and coordinates (if \code{speed_mode == "coord"})
@@ -123,7 +127,7 @@ speedmat = function(data,
                     caliper_s = NULL, 
                     caliper_jsd = NULL, 
                     scale = FALSE) {
-    if (!mode_speed %in% c('product', 'coord')) {
+    if (!mode_speed %in% c('product', 'product2', 'coord')) {
         stop("The argument mode_speed should be one of 'product' or 'coord'")
     }
     if ((mode_speed == 'coord' && (is.null(coords) | is.null(coords_factor)))) {
@@ -133,6 +137,7 @@ speedmat = function(data,
     speedmat_res = 
         switch(mode_speed,
               product = speedmat.jsdist(data, formula, outcome, treatment, caliper_s = caliper_s, caliper_jsd = caliper_jsd, scale = scale),
+              product2 = speedmat.jsdist.m(data, formula, outcome, treatment, caliper_s = caliper_s, caliper_jsd = caliper_jsd, scale = scale),
               coord = speedmat.coord(data, formula, outcome, treatment, coords, coords_factor))
     return(speedmat_res)
     }
@@ -151,7 +156,6 @@ speedmat = function(data,
 #'
 speedmat.coord = function(data, formula, outcome = 'outcome', treatment = 'treatment', coords = c('X', 'Y'), coords_factor = 10) {
     
-    scale_minmax = function(x) x / (max(x) - min(x))
     mat_mm = model.matrix(formula, data)[,-1]
     # formula_ext = update.formula(formula, as.formula(paste('.~.+', outcome)))
     formula_ext = formula
@@ -177,9 +181,9 @@ speedmat.coord = function(data, formula, outcome = 'outcome', treatment = 'treat
 #' @title SpEED matrix by multiplying Jensen-Shannon divergence and geodesic distance (in km)
 #' @description Returns a SpEED matrix, which is the product of Jensen-Shannon divergence and geographic distance matrix
 #' @param data sf object. Should include outcome, treatment, and coordinates 
-#' @param formula formula. in \code{y ~ x} form.
-#' @param outcome character(1). Outcome variable name. default is \code{'outcome'}
-#' @param treatment character(1). Treatment variable name. default is \code{'treatment'}
+#' @param formula formula. in y ~ x form.
+#' @param outcome character(1). Outcome variable name. default is 'outcome'
+#' @param treatment character(1). Treatment variable name. default is 'treatment'
 #' @param caliper_s numeric(1). Caliper for distance
 #' @param caliper_jsd numeric(1). Caliper for divergence value
 #' @param scale logical(1). Min-max scaling for both distance and divergence, resulting in range [0,1]
@@ -188,7 +192,6 @@ speedmat.coord = function(data, formula, outcome = 'outcome', treatment = 'treat
 #' 
 speedmat.jsdist = function(data, formula, outcome = 'outcome', treatment = 'treatment', caliper_s = NULL, caliper_jsd = NULL, scale = FALSE) {
     
-    scale_minmax = function(x) x / (max(x) - min(x))
     mat_mm = model.matrix(formula, data)[,-1]
     # formula_ext = update.formula(formula, as.formula(paste('.~.+', outcome)))
     formula_ext = formula
@@ -197,13 +200,13 @@ speedmat.jsdist = function(data, formula, outcome = 'outcome', treatment = 'trea
     mat_mf = mat_mf[, sapply(mat_mf, function(x) length(unique(x)) != 0 )]
 
     print(dim(mat_mf))
-    mat_mmsc = apply(mat_mm, 2, function(x) abs(scale_minmax(x)) + scale_minmax(x) + 0.001)
+    mat_mmsc = apply(mat_mm, 2, function(x) scale_minmax(x) + 0.001)
         # apply(2, function(x)  as.vector(scale(x)) + abs(min(as.vector(scale(x)))) + 0.001)
         #apply(2, function(x) if (length(unique(x)) > 2) as.vector(scale(x)) + abs(min(as.vector(scale(x)))) + 0.001 else x)
     #  mat_mmsc[,coords] = mat_mmsc[,coords] * coords_factor
-    mat_jsd = distJSD(t(mat_mmsc))#philentropy::JSD(mat_mmsc)
-    mat_jsdt= t(mat_jsd)
-    mat_jsd = mat_jsd + mat_jsdt
+    mat_jsd = distJSD(mat_mmsc)#philentropy::JSD(mat_mmsc)
+    # mat_jsdt= t(mat_jsd)
+    # mat_jsd = mat_jsd + mat_jsdt
 
     mat_geodist = sf::st_distance(data) / 1e3
     if (!is.null(caliper_s)) {
@@ -214,9 +217,8 @@ speedmat.jsdist = function(data, formula, outcome = 'outcome', treatment = 'trea
         mat_jsd[which(mat_jsd > caliper_jsd)] = NA
     }
     if (scale) {
-        mat_geodist = (mat_geodist - min(mat_geodist, na.rm = TRUE)) / max(mat_geodist, na.rm = TRUE)
-        mat_jsd = (mat_jsd - min(mat_jsd, na.rm = TRUE)) / max(mat_jsd, na.rm = TRUE)
-        
+        mat_geodist = scale_minmax(mat_geodist) + 0.001
+        mat_jsd = scale_minmax(mat_jsd) + 0.001
     }
     gc()
     #mat_jsd_pm = pairmatch(mat_jsd)
@@ -226,3 +228,67 @@ speedmat.jsdist = function(data, formula, outcome = 'outcome', treatment = 'trea
 
 }
 
+
+#' @title SpEED matrix by multiplying Jensen-Shannon divergence and geodesic distance (in km) -- efficient version
+#' @description Returns a SpEED matrix, which is the product of Jensen-Shannon divergence and geographic distance matrix
+#' @param data sf object. Should include outcome, treatment, and coordinates 
+#' @param formula formula. in y ~ x form.
+#' @param outcome character(1). Outcome variable name. default is 'outcome'
+#' @param treatment character(1). Treatment variable name. default is 'treatment'
+#' @param caliper_s numeric(1). Caliper for distance
+#' @param caliper_jsd numeric(1). Caliper for divergence value
+#' @param scale logical(1). Min-max scaling for both distance and divergence, resulting in range [0,1]
+#' @author Insang Song (sigmafelix@hotmail.com)
+#' @export
+#' 
+speedmat.jsdist.m = function(data, formula, outcome = 'outcome', treatment = 'treatment', caliper_s = NULL, caliper_jsd = NULL, scale = FALSE) {
+    
+    if (length(unique(data[[treatment]])) < 2) {
+        stop("The data appears to have less than two treatment values. Please check your data has relevant values in the treatment column (suggestion: 0/1).")
+    }
+
+    indx_tr = which(data[[treatment]] > 0)
+    indx_co = which(data[[treatment]] == 0)
+
+    mat_mm = model.matrix(formula, data)[,-1]
+
+    data_tr = data[indx_tr,]
+    data_co = data[indx_co,]
+    # formula_ext = update.formula(formula, as.formula(paste('.~.+', outcome)))
+    formula_ext = formula
+    mat_mf = model.frame(formula_ext, data)
+    # 092422
+    mat_mf = mat_mf[, sapply(mat_mf, function(x) length(unique(x)) != 0 )]
+
+    print(dim(mat_mf))
+    mat_mmsc = apply(mat_mm, 2, function(x) scale_minmax(x) + 0.001)
+        # apply(2, function(x)  as.vector(scale(x)) + abs(min(as.vector(scale(x)))) + 0.001)
+        #apply(2, function(x) if (length(unique(x)) > 2) as.vector(scale(x)) + abs(min(as.vector(scale(x)))) + 0.001 else x)
+    #  mat_mmsc[,coords] = mat_mmsc[,coords] * coords_factor
+    mat_mm_tr = mat_mmsc[indx_tr,]
+    mat_mm_co = mat_mmsc[indx_co,]
+
+    mat_jsd = distJSD2(mat_mm_tr, mat_mm_co)#philentropy::JSD(mat_mmsc)
+    # mat_jsdt= t(mat_jsd)
+    # mat_jsd = mat_jsd + mat_jsdt
+
+    mat_geodist = sf::st_distance(data_tr, data_co) 
+
+    if (!is.null(caliper_s)) {
+        mat_geodist[which(mat_geodist > caliper_s)] = NA
+
+    }
+    if (!is.null(caliper_jsd)) {
+        mat_jsd[which(mat_jsd > caliper_jsd)] = NA
+    }
+    if (scale) {
+        mat_geodist = scale_minmax(mat_geodist) + 0.001
+        mat_jsd = scale_minmax(mat_jsd) + 0.001
+        # mat_geodist = (mat_geodist - min(mat_geodist, na.rm = TRUE)) / max(mat_geodist, na.rm = TRUE)
+        # mat_jsd = (mat_jsd - min(mat_jsd, na.rm = TRUE)) / max(mat_jsd, na.rm = TRUE)
+    }
+    # Hadamard product
+    mat_jsdd = mat_jsd * mat_geodist
+    return(mat_jsdd) #mat_jsd instead?
+
+}

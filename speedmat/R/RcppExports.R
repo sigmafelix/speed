@@ -17,3 +17,15 @@ distJSD <- function(inMatrix) {
     .Call('_speedmat_distJSD', PACKAGE = 'speedmat', inMatrix)
 }
 
+#' @name distJSD2
+#' @title Jensen-Shannon divergence with two inputs
+#' 
+#' @description Computes Jensen-Shannon divergence, which is based on Kullback-Leibler divergence. deq(\text{JSD}(A||B)=\frac{1}{2} \left( \text{KL}(A||M)+\text{KL}(B||M) \right))
+#' 
+#' @param inMatrixTr a positive-valued numeric matrix of treated units.
+#' @param inMatrixCo a positive-valued numeric matrix of controlled units.
+#' @export
+distJSD2 <- function(inMatrixTr, inMatrixCo) {
+    .Call('_speedmat_distJSD2', PACKAGE = 'speedmat', inMatrixTr, inMatrixCo)
+}
+

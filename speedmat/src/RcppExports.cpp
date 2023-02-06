@@ -33,10 +33,23 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// distJSD2
+Rcpp::NumericMatrix distJSD2(const Rcpp::NumericMatrix& inMatrixTr, const Rcpp::NumericMatrix& inMatrixCo);
+RcppExport SEXP _speedmat_distJSD2(SEXP inMatrixTrSEXP, SEXP inMatrixCoSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< const Rcpp::NumericMatrix& >::type inMatrixTr(inMatrixTrSEXP);
+    Rcpp::traits::input_parameter< const Rcpp::NumericMatrix& >::type inMatrixCo(inMatrixCoSEXP);
+    rcpp_result_gen = Rcpp::wrap(distJSD2(inMatrixTr, inMatrixCo));
+    return rcpp_result_gen;
+END_RCPP
+}
 
 static const R_CallMethodDef CallEntries[] = {
     {"_speedmat_cppJSD", (DL_FUNC) &_speedmat_cppJSD, 2},
     {"_speedmat_distJSD", (DL_FUNC) &_speedmat_distJSD, 1},
+    {"_speedmat_distJSD2", (DL_FUNC) &_speedmat_distJSD2, 2},
     {NULL, NULL, 0}
 };
 
