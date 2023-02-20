@@ -208,14 +208,14 @@ speedmat.jsdist = function(data, formula, outcome = 'outcome', treatment = 'trea
     # mat_jsdt= t(mat_jsd)
     # mat_jsd = mat_jsd + mat_jsdt
 
-    mat_geodist = sf::st_distance(data) / 1e3
+    mat_geodist = sf::st_distance(data) # meters
     mat_geodist = units::drop_units(mat_geodist)
     if (scale) {
-        mat_geodist = scale_minmax(mat_geodist) + 0.001
+        mat_geodist_sc = scale_minmax(mat_geodist) + 0.001
         mat_jsd = scale_minmax(mat_jsd) + 0.001
     }
     if (!is.null(caliper_s)) {
-        mat_geodist[which(mat_geodist - 0.001 > caliper_s)] = Inf # 1/min(mat_geodist)
+        mat_geodist_sc[which(mat_geodist > caliper_s)] = Inf # 1/min(mat_geodist)
 
     }
     if (!is.null(caliper_jsd)) {
@@ -223,7 +223,7 @@ speedmat.jsdist = function(data, formula, outcome = 'outcome', treatment = 'trea
     }
     #mat_jsd_pm = pairmatch(mat_jsd)
     # Hadamard product
-    mat_jsdd = mat_jsd * mat_geodist
+    mat_jsdd = mat_jsd * mat_geodist_sc
     return(mat_jsdd) #mat_jsd instead?
 
 }
@@ -276,20 +276,79 @@ speedmat.jsdist.m = function(data, formula, outcome = 'outcome', treatment = 'tr
     mat_geodist = units::drop_units(mat_geodist)
 
     if (scale) {
-        mat_geodist = scale_minmax(mat_geodist) + 0.001
+        mat_geodist_sc = scale_minmax(mat_geodist) + 0.001
         mat_jsd = scale_minmax(mat_jsd) + 0.001
         # mat_geodist = (mat_geodist - min(mat_geodist, na.rm = TRUE)) / max(mat_geodist, na.rm = TRUE)
         # mat_jsd = (mat_jsd - min(mat_jsd, na.rm = TRUE)) / max(mat_jsd, na.rm = TRUE)
     }
     if (!is.null(caliper_s)) {
-        mat_geodist[which(mat_geodist - 0.001 > caliper_s)] = Inf # 1/min(mat_geodist)
+        mat_geodist_sc[which(mat_geodist > caliper_s)] = Inf # 1/min(mat_geodist)
 
     }
     if (!is.null(caliper_jsd)) {
         mat_jsd[which(mat_jsd - 0.001 > caliper_jsd)] = Inf # 1/min(mat_jsd)
     }
     # Hadamard product
-    mat_jsdd = mat_jsd * mat_geodist
+    mat_jsdd = mat_jsd * mat_geodist_sc
     return(mat_jsdd) #mat_jsd instead?
 
+}
+
+
+#' @title Plot the distribution of geographic distance and Jensen-Shannon divergence
+#' @description Shows a multi-panel plot which displays histograms of geographic distance and JSD
+#' @param data sf object. Should include outcome, treatment, and coordinates 
+#' @param formula formula. in y ~ x form.
+#' @param outcome character(1). Outcome variable name. default is 'outcome'
+#' @param treatment character(1). Treatment variable name. default is 'treatment'
+#' @author Insang Song (sigmafelix@hotmail.com)
+#' @export
+#' 
+plot_dists = function(mode = "infunc", data = NULL, formula = NULL, outcome = NULL, treatment = NULL) {
+    if (length(unique(data[[treatment]])) < 2) {
+        stop("The data appears to have less than two treatment values. Please check your data has relevant values in the treatment column (suggestion: 0/1).")
+    }
+    if (!mode %in% c('infunc', 'independent')) {
+        stop("mode argument should be one of 'infunc' or 'independent.'\n")
+    }
+    library(ggplot2)
+
+    if (mode == 'independent') {
+        indx_tr = which(data[[treatment]] > 0)
+        indx_co = which(data[[treatment]] == 0)
+
+        mat_mm = model.matrix(formula, data)[,-1]
+
+        data_tr = data[indx_tr,]
+        data_co = data[indx_co,]
+        # formula_ext = update.formula(formula, as.formula(paste('.~.+', outcome)))
+        formula_ext = formula
+        mat_mf = model.frame(formula_ext, data)
+        # 092422
+        mat_mf = mat_mf[, sapply(mat_mf, function(x) length(unique(x)) != 0 )]
+
+        print(dim(mat_mf))
+        mat_mmsc = apply(mat_mm, 2, function(x) scale_minmax(x) + 0.001)
+        mat_mm_tr = mat_mmsc[indx_tr,]
+        mat_mm_co = mat_mmsc[indx_co,]
+
+        vec_jsd = as.vector(distJSD2(mat_mm_tr, mat_mm_co))
+
+        mat_geodist = sf::st_distance(data_tr, data_co) 
+        vec_geodist = as.vector(units::drop_units(mat_geodist))
+    } else {
+        mat_geodist = sf::st_distance(data_tr, data_co) 
+        vec_geodist = as.vector(units::drop_units(mat_geodist))
+    }
+
+    data_dist = data.frame(
+        rbind(
+            cbind(disttype = "Geographic distance", value = vec_geodist),
+            cbind(disttype = "Jensen-Shannon divergence", value = vec_jsd)))
+    
+    ggplot(data = data_dist,
+           mapping = aes(x = value, color = disttype)) +
+        theme_bw() +
+        geom_histogram(bins = 100) +
+        facet_wrap(~disttype, scales = "free")
 }
