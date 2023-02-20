@@ -213,6 +213,8 @@ speedmat.jsdist = function(data, formula, outcome = 'outcome', treatment = 'trea
     if (scale) {
         mat_geodist_sc = scale_minmax(mat_geodist) + 0.001
         mat_jsd = scale_minmax(mat_jsd) + 0.001
+    } else {
+        mat_geodist_sc = mat_geodist
     }
     if (!is.null(caliper_s)) {
         mat_geodist_sc[which(mat_geodist > caliper_s)] = Inf # 1/min(mat_geodist)
@@ -280,6 +282,8 @@ speedmat.jsdist.m = function(data, formula, outcome = 'outcome', treatment = 'tr
         mat_jsd = scale_minmax(mat_jsd) + 0.001
         # mat_geodist = (mat_geodist - min(mat_geodist, na.rm = TRUE)) / max(mat_geodist, na.rm = TRUE)
         # mat_jsd = (mat_jsd - min(mat_jsd, na.rm = TRUE)) / max(mat_jsd, na.rm = TRUE)
+    } else {
+        mat_geodist_sc = mat_geodist
     }
     if (!is.null(caliper_s)) {
         mat_geodist_sc[which(mat_geodist > caliper_s)] = Inf # 1/min(mat_geodist)
