@@ -14,5 +14,5 @@ distJSD2(inMatrixTr, inMatrixCo)
 
 }
 \description{
-Computes Jensen-Shannon divergence, which is based on Kullback-Leibler divergence. \eqn(\text{JSD}(A||B)=\frac{1}{2} \left( \text{KL}(A||M)+\text{KL}(B||M) \right))
+Computes Jensen-Shannon divergence, which is based on Kullback-Leibler divergence. \eqn{JSD(A \Vert B)=\frac{1}{2} \left( KL(A \Vert M)+KL(B \Vert M) \right)}
 }

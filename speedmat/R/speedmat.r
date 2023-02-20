@@ -209,18 +209,18 @@ speedmat.jsdist = function(data, formula, outcome = 'outcome', treatment = 'trea
     # mat_jsd = mat_jsd + mat_jsdt
 
     mat_geodist = sf::st_distance(data) / 1e3
-    if (!is.null(caliper_s)) {
-        mat_geodist[which(mat_geodist > caliper_s)] = 1/min(mat_geodist)
-
-    }
-    if (!is.null(caliper_jsd)) {
-        mat_jsd[which(mat_jsd > caliper_jsd)] = 1/min(mat_jsd)
-    }
+    mat_geodist = units::drop_units(mat_geodist)
     if (scale) {
         mat_geodist = scale_minmax(mat_geodist) + 0.001
         mat_jsd = scale_minmax(mat_jsd) + 0.001
     }
-    gc()
+    if (!is.null(caliper_s)) {
+        mat_geodist[which(mat_geodist - 0.001 > caliper_s)] = Inf # 1/min(mat_geodist)
+
+    }
+    if (!is.null(caliper_jsd)) {
+        mat_jsd[which(mat_jsd - 0.001 > caliper_jsd)] = Inf # 1/min(mat_jsd)
+    }
     #mat_jsd_pm = pairmatch(mat_jsd)
     # Hadamard product
     mat_jsdd = mat_jsd * mat_geodist
@@ -273,19 +273,20 @@ speedmat.jsdist.m = function(data, formula, outcome = 'outcome', treatment = 'tr
     # mat_jsd = mat_jsd + mat_jsdt
 
     mat_geodist = sf::st_distance(data_tr, data_co) 
+    mat_geodist = units::drop_units(mat_geodist)
 
-    if (!is.null(caliper_s)) {
-        mat_geodist[which(mat_geodist > caliper_s)] = 1/min(mat_geodist)
-
-    }
-    if (!is.null(caliper_jsd)) {
-        mat_jsd[which(mat_jsd > caliper_jsd)] = 1/min(mat_jsd)
-    }
     if (scale) {
         mat_geodist = scale_minmax(mat_geodist) + 0.001
         mat_jsd = scale_minmax(mat_jsd) + 0.001
         # mat_geodist = (mat_geodist - min(mat_geodist, na.rm = TRUE)) / max(mat_geodist, na.rm = TRUE)
         # mat_jsd = (mat_jsd - min(mat_jsd, na.rm = TRUE)) / max(mat_jsd, na.rm = TRUE)
+    }
+    if (!is.null(caliper_s)) {
+        mat_geodist[which(mat_geodist - 0.001 > caliper_s)] = Inf # 1/min(mat_geodist)
+
+    }
+    if (!is.null(caliper_jsd)) {
+        mat_jsd[which(mat_jsd - 0.001 > caliper_jsd)] = Inf # 1/min(mat_jsd)
     }
     # Hadamard product
     mat_jsdd = mat_jsd * mat_geodist

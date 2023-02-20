@@ -11,9 +11,10 @@ speedmat(
   treatment = "treatment",
   mode_speed = "product",
   coords = NULL,
-  coords_factor = NULL
-)
-}
+  coords_factor = NULL, 
+  caliper_s = NULL, 
+  caliper_jsd = NULL, 
+  scale = FALSE)}
 \arguments{
 \item{data}{sf object. Should include outcome, treatment, and coordinates (if \code{speed_mode == "coord"})}
 
