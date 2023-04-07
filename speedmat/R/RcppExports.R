@@ -2,8 +2,8 @@
 # Generator token: 10BE3573-1514-4C36-9D1C-5A225CD40393
 
 #' @export
-cppJSD <- function(x, y) {
-    .Call('_speedmat_cppJSD', PACKAGE = 'speedmat', x, y)
+cppJSD <- function(p, q) {
+    .Call('_speedmat_cppJSD', PACKAGE = 'speedmat', p, q)
 }
 
 #' @name distJSD

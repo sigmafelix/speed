@@ -190,7 +190,7 @@ speedmat.coord = function(data, formula, outcome = 'outcome', treatment = 'treat
 #' @author Insang Song (sigmafelix@hotmail.com)
 #' @export
 #' 
-speedmat.jsdist = function(data, formula, outcome = 'outcome', treatment = 'treatment', caliper_s = NULL, caliper_jsd = NULL, scale = FALSE) {
+speedmat.jsdist = function(data, formula, outcome = 'outcome', treatment = 'treatment', caliper_s = NULL, caliper_jsd = NULL, scale = FALSE, zero_adjust = 1) {
     
     mat_mm = model.matrix(formula, data)[,-1]
     # formula_ext = update.formula(formula, as.formula(paste('.~.+', outcome)))
@@ -199,8 +199,9 @@ speedmat.jsdist = function(data, formula, outcome = 'outcome', treatment = 'trea
     # 092422
     mat_mf = mat_mf[, sapply(mat_mf, function(x) length(unique(x)) != 0 )]
 
-    print(dim(mat_mf))
-    mat_mmsc = apply(mat_mm, 2, function(x) scale_minmax(x) + 0.001)
+    mat_mf_dim = dim(mat_mf)
+    cat(sprintf("Valid data dimension: [%d, %d]\n", mat_mf_dim[1], mat_mf_dim[2]))
+    mat_mmsc = apply(mat_mm, 2, function(x) scale_minmax(x) + zero_adjust)
         # apply(2, function(x)  as.vector(scale(x)) + abs(min(as.vector(scale(x)))) + 0.001)
         #apply(2, function(x) if (length(unique(x)) > 2) as.vector(scale(x)) + abs(min(as.vector(scale(x)))) + 0.001 else x)
     #  mat_mmsc[,coords] = mat_mmsc[,coords] * coords_factor
@@ -211,8 +212,8 @@ speedmat.jsdist = function(data, formula, outcome = 'outcome', treatment = 'trea
     mat_geodist = sf::st_distance(data) # meters
     mat_geodist = units::drop_units(mat_geodist)
     if (scale) {
-        mat_geodist_sc = scale_minmax(mat_geodist) + 0.001
-        mat_jsd = scale_minmax(mat_jsd) + 0.001
+        mat_geodist_sc = scale_minmax(mat_geodist) + zero_adjust
+        mat_jsd = scale_minmax(mat_jsd) + zero_adjust
     } else {
         mat_geodist_sc = mat_geodist
     }
@@ -243,7 +244,7 @@ speedmat.jsdist = function(data, formula, outcome = 'outcome', treatment = 'trea
 #' @author Insang Song (sigmafelix@hotmail.com)
 #' @export
 #' 
-speedmat.jsdist.m = function(data, formula, outcome = 'outcome', treatment = 'treatment', caliper_s = NULL, caliper_jsd = NULL, scale = FALSE) {
+speedmat.jsdist.m = function(data, formula, outcome = 'outcome', treatment = 'treatment', caliper_s = NULL, caliper_jsd = NULL, scale = FALSE, zero_adjust = 1) {
     
     if (length(unique(data[[treatment]])) < 2) {
         stop("The data appears to have less than two treatment values. Please check your data has relevant values in the treatment column (suggestion: 0/1).")
@@ -263,25 +264,18 @@ speedmat.jsdist.m = function(data, formula, outcome = 'outcome', treatment = 'tr
     mat_mf = mat_mf[, sapply(mat_mf, function(x) length(unique(x)) != 0 )]
 
     print(dim(mat_mf))
-    mat_mmsc = apply(mat_mm, 2, function(x) scale_minmax(x) + 0.001)
-        # apply(2, function(x)  as.vector(scale(x)) + abs(min(as.vector(scale(x)))) + 0.001)
-        #apply(2, function(x) if (length(unique(x)) > 2) as.vector(scale(x)) + abs(min(as.vector(scale(x)))) + 0.001 else x)
-    #  mat_mmsc[,coords] = mat_mmsc[,coords] * coords_factor
+    mat_mmsc = apply(mat_mm, 2, function(x) scale_minmax(x) + zero_adjust)
     mat_mm_tr = mat_mmsc[indx_tr,]
     mat_mm_co = mat_mmsc[indx_co,]
 
-    mat_jsd = distJSD2(mat_mm_tr, mat_mm_co)#philentropy::JSD(mat_mmsc)
-    # mat_jsdt= t(mat_jsd)
-    # mat_jsd = mat_jsd + mat_jsdt
+    mat_jsd = distJSD2(mat_mm_tr, mat_mm_co)
 
     mat_geodist = sf::st_distance(data_tr, data_co) 
     mat_geodist = units::drop_units(mat_geodist)
 
     if (scale) {
-        mat_geodist_sc = scale_minmax(mat_geodist) + 0.001
-        mat_jsd = scale_minmax(mat_jsd) + 0.001
-        # mat_geodist = (mat_geodist - min(mat_geodist, na.rm = TRUE)) / max(mat_geodist, na.rm = TRUE)
-        # mat_jsd = (mat_jsd - min(mat_jsd, na.rm = TRUE)) / max(mat_jsd, na.rm = TRUE)
+        mat_geodist_sc = scale_minmax(mat_geodist) + zero_adjust
+        mat_jsd = scale_minmax(mat_jsd) + zero_adjust
     } else {
         mat_geodist_sc = mat_geodist
     }
@@ -290,11 +284,11 @@ speedmat.jsdist.m = function(data, formula, outcome = 'outcome', treatment = 'tr
 
     }
     if (!is.null(caliper_jsd)) {
-        mat_jsd[which(mat_jsd - 0.001 > caliper_jsd)] = Inf # 1/min(mat_jsd)
+        mat_jsd[which(mat_jsd - zero_adjust > caliper_jsd)] = Inf # 1/min(mat_jsd)
     }
     # Hadamard product
     mat_jsdd = mat_jsd * mat_geodist_sc
-    return(mat_jsdd) #mat_jsd instead?
+    return(mat_jsdd) 
 
 }
 

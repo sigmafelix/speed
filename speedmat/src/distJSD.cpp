@@ -1,12 +1,19 @@
-#include <Rcpp.h>
-using namespace Rcpp;
+#include <RcppArmadillo.h>
+#include <cmath>
+//using namespace Rcpp;
+// [[Rcpp::depends(RcppArmadillo)]]
 
 //' @export
 // [[Rcpp::export]]
-double cppJSD(const Rcpp::NumericVector& x, const Rcpp::NumericVector& y) {
-  return (0.5 * (Rcpp::sum(x * Rcpp::log(x/((x+y)/2))) +
-                          Rcpp::sum(y * Rcpp::log(y/((x+y)/2)))));
+double cppJSD(const arma::vec& p, const arma::vec& q) {
+  arma::vec m = 0.5 * (p + q);
+  double jsd = 0.5 * (arma::accu(p % arma::log2(p / m)) + arma::accu(q % arma::log2(q / m)));
+  return jsd;
 }
+// double cppJSD(const Rcpp::NumericVector& x, const Rcpp::NumericVector& y) {
+//   return (0.5 * (Rcpp::sum(x * Rcpp::log(x/((x+y)/2))) +
+//                           Rcpp::sum(y * Rcpp::log(y/((x+y)/2)))));
+// }
 
 //' @name distJSD
 //' @title Jensen-Shannon divergence
