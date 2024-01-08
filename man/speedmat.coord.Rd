@@ -10,7 +10,7 @@ speedmat.coord(
   outcome = "outcome",
   treatment = "treatment",
   coords = c("X", "Y"),
-  coords_factor = 10
+  coords_factor = 10L
 )
 }
 \arguments{
@@ -18,11 +18,14 @@ speedmat.coord(
 
 \item{formula}{formula. in \code{y ~ x} form.}
 
-\item{outcome}{character(1). Outcome variable name. default is \code{'outcome'}}
+\item{outcome}{character(1). Outcome variable name.
+Default is \code{'outcome'}}
 
-\item{treatment}{character(1). Treatment variable name. default is \code{'treatment'}}
+\item{treatment}{character(1). Treatment variable name.
+Default is \code{'treatment'}}
 
-\item{coords}{character(2). Names of the columns with x- and y-dimension coordinates.}
+\item{coords}{character(2). Names of the columns with x- and y-dimension
+coordinates.}
 
 \item{coords_factor}{numeric(1). Coordinate weights after standardization.}
 }
