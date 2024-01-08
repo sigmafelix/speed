@@ -1,8 +1,11 @@
-# `speed`
+# `speedmat`
 Spatially-Enhanced and Entropy-Derived Contiguity Matrix (SpEED)
 
+# Installation
+- Requirement: C++ compilers, Rcpp, RcppArmadillo, sf
+- To install this package, please use the command below. It assumes that users have installed `remotes` package
 ```{r}
-remote::install_github('sigmafelix/speed/speedmat')
+remotes::install_github('sigmafelix/speed')
 ```
 
 # Concept
@@ -12,5 +15,5 @@ remote::install_github('sigmafelix/speed/speedmat')
 - Inspired by [https://github.com/gpapadog/DAPSm](DAPSm)
 
 # Future works
-- Improve the speed for scalable analyses by making the pairwise SpEED matrix more succinct (i.e., all records to treat-control alignments)
-- Enable calipers at the calculation steps for divergence, distance, and the product of both, respectively
+- TODO: Rcpp level parallelization to reduce execution time
+- TODO: connecting/porting to Julia

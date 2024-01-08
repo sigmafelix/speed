@@ -8,6 +8,6 @@ Description: A package for computing spatially enhanced and entropy-derived matr
 License: MIT License
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 7.2.2
+RoxygenNote: 7.2.3
 LinkingTo: Rcpp, RcppArmadillo
-Imports: Rcpp, sf, dplyr, nngeo, spdep
+Imports: Rcpp, sf, dplyr, nngeo, spdep, testthat (>= 3.0.0), covr, ggplot2
