@@ -3,7 +3,7 @@
 
 #' @export
 cppJSD <- function(p, q) {
-    .Call('_speedmat_cppJSD', PACKAGE = 'speedmat', p, q)
+    .Call('_speedmat_cppJSD', PACKAGE = "speedmat", p, q)
 }
 
 #' @name distJSD
@@ -14,7 +14,7 @@ cppJSD <- function(p, q) {
 #' @param inMatrix a positive-valued numeric matrix.
 #' @export
 distJSD <- function(inMatrix) {
-    .Call('_speedmat_distJSD', PACKAGE = 'speedmat', inMatrix)
+    .Call('_speedmat_distJSD', PACKAGE = "speedmat", inMatrix)
 }
 
 #' @name distJSD2
@@ -26,6 +26,6 @@ distJSD <- function(inMatrix) {
 #' @param inMatrixCo a positive-valued numeric matrix of controlled units.
 #' @export
 distJSD2 <- function(inMatrixTr, inMatrixCo) {
-    .Call('_speedmat_distJSD2', PACKAGE = 'speedmat', inMatrixTr, inMatrixCo)
+    .Call('_speedmat_distJSD2', PACKAGE = "speedmat", inMatrixTr, inMatrixCo)
 }
 

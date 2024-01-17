@@ -1,13 +1,14 @@
 Package: speedmat
 Type: Package
 Title: Spatially Enhanced and Entropy-Derived Contiguity Matrix (SpEED)
-Version: 0.3.0
+Version: 0.3.1
 Author: Insang Song
-Maintainer: Insang Song <sigmafelix@hotmail.com>
+Maintainer: Insang Song <geoissong@gmail.com>
 Description: A package for computing spatially enhanced and entropy-derived matrix for matching analysis
 License: MIT License
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 7.2.3
 LinkingTo: Rcpp, RcppArmadillo
-Imports: Rcpp, sf, dplyr, nngeo, spdep, testthat (>= 3.0.0), covr, ggplot2, withr
+Imports: Rcpp, sf, dplyr, nngeo, spdep, testthat (>= 3.0.0), ggplot2
+Suggests: withr, covr

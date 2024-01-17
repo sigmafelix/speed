@@ -32,7 +32,7 @@ Default is 'treatment'}
 \item{caliper_jsd}{numeric(1). Caliper for divergence value}
 
 \item{scale}{logical(1). Min-max scaling for both distance and
-divergence, resulting in range [0,1]}
+divergence, resulting in range [0,1]. Default is \code{FALSE}}
 
 \item{zero_adjust}{numeric(1). The minimum after min-max scaling.}
 }
@@ -41,5 +41,5 @@ Returns a SpEED matrix, which is the product of
  Jensen-Shannon divergence and geographic distance matrix
 }
 \author{
-Insang Song (sigmafelix@hotmail.com)
+Insang Song (geoissong@gmail.com)
 }

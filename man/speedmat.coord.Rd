@@ -25,7 +25,7 @@ Default is \code{'outcome'}}
 Default is \code{'treatment'}}
 
 \item{coords}{character(2). Names of the columns with x- and y-dimension
-coordinates.}
+coordinates. Default is c("X", "Y")}
 
 \item{coords_factor}{numeric(1). Coordinate weights after standardization.}
 }
@@ -33,5 +33,5 @@ coordinates.}
 Returns the Jensen-Shannon divergence with weighted coordinates
 }
 \author{
-Insang Song (sigmafelix@hotmail.com)
+Insang Song (geoissong@gmail.com)
 }

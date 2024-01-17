@@ -6,14 +6,17 @@
  Jensen-Shannon divergence}
 \usage{
 plot_dists(
-  mode = "infunc",
+  mode = c("independent", "infunc"),
   data = NULL,
   formula = NULL,
   outcome = NULL,
-  treatment = NULL
+  treatment = "treatment",
+  zero_adjust = 0.001
 )
 }
 \arguments{
+\item{mode}{One of "infunc" (internal use for other speed functions) or "independent" (other)}
+
 \item{data}{sf object. Should include outcome, treatment, and
 coordinates}
 
@@ -23,11 +26,14 @@ coordinates}
 
 \item{treatment}{character(1). Treatment variable name.
 Default is 'treatment'}
+
+\item{zero_adjust}{numeric(1). A small value that supplements zero
+for logarithm. Default is 0.001.}
 }
 \description{
 Shows a multi-panel plot which displays histograms of
  geographic distance and JSD
 }
 \author{
-Insang Song (sigmafelix@hotmail.com)
+Insang Song (geoissong@gmail.com)
 }

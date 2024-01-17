@@ -42,5 +42,5 @@ Returns a SpEED matrix, which is the product of
  Jensen-Shannon divergence and geographic distance matrix
 }
 \author{
-Insang Song (sigmafelix@hotmail.com)
+Insang Song (geoissong@gmail.com)
 }

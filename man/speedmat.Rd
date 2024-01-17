@@ -9,7 +9,7 @@ speedmat(
   formula,
   outcome = "outcome",
   treatment = "treatment",
-  mode_speed = "product",
+  mode_speed = c("product", "product2", "coord"),
   coords = NULL,
   coords_factor = NULL,
   caliper_s = NULL,
@@ -18,8 +18,7 @@ speedmat(
 )
 }
 \arguments{
-\item{data}{sf object. Should include outcome, treatment, and
-coordinates (if \code{speed_mode == "coord"})}
+\item{data}{sf object. Should include outcome, treatment, and coordinates (especially if \code{speed_mode == "coord"})}
 
 \item{formula}{formula. in \code{y ~ x} form.}
 
@@ -50,6 +49,9 @@ divergence, resulting in range [0,1]}
 Returns spatially enhanced and entropy-derived matrix (SpEED)
  for matching analysis
 }
+\note{
+Please note that SpEED is currently accepting binary treatment values only.
+}
 \author{
-Insang Song (sigmafelix@hotmail.com)
+Insang Song (geoissong@gmail.com)
 }
