@@ -31,7 +31,7 @@ jobs:
       - name: Test coverage
         run: |
           Rscript -e "writeLines(covr::coverage_to_list()$totalcoverage, '${{ runner.temp }}/package/local_cov.Rout')"
-        shell: Rscript {0}
+        shell: bash
 
       - name: Get Values
         id: get-values
