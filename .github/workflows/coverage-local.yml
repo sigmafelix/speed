@@ -40,14 +40,14 @@ jobs:
 
       - name: Test coverage
         run: |
-          Rscript -e "writeLines(as.character(covr::coverage_to_list()$totalcoverage), 'local_cov.Rout')"
+          Rscript -e "writeLines(as.character(covr::coverage_to_list()$totalcoverage), '${{ github.action_path }}/local_cov.Rout')"
         shell: bash
 
       - name: Get Values
         id: get-values
         shell: bash
         run: |
-          COV=$(cat '${{ github.workspace }}/local_conv.Rout')
+          COV=$(cat '${{ github.action_path }}/local_conv.Rout')
           echo "coverage=$COV" >> $GITHUB_OUTPUT
 
       - name: Checkout gh-pages
