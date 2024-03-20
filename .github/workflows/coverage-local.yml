@@ -1,4 +1,5 @@
 # Workflow derived from https://github.com/r-lib/actions/tree/v2/examples
+# also derived from https://github.com/we-cli/coverage-badge-action
 # Need help debugging build failures? Start at https://github.com/r-lib/actions#where-to-find-help
 on:
   push:
@@ -6,7 +7,7 @@ on:
   pull_request:
     branches: [main, master]
 
-name: test-coverage
+name: test-coverage-local
 
 jobs:
   test-coverage:
@@ -29,7 +30,7 @@ jobs:
 
       - name: Test coverage
         run: |
-          Rscript -e "writeLines(covr::coverage_to_list()$totalcoverage, '${{ runner.temp }}/package/local_cov.Rout'"
+          Rscript -e "writeLines(covr::coverage_to_list()$totalcoverage, '${{ runner.temp }}/package/local_cov.Rout')"
         shell: Rscript {0}
 
       - name: Get Values
