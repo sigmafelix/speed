@@ -47,7 +47,7 @@ jobs:
         id: get-values
         shell: bash
         run: |
-          COV=$(cat '${{ github.workspace }}/local_conv.Rout')
+          COV=$(cat '${{ github.workspace }}/local_cov.Rout')
           echo "coverage=$COV" >> $GITHUB_OUTPUT
 
       - name: Checkout gh-pages
