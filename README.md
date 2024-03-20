@@ -1,5 +1,8 @@
 [![codecov](https://codecov.io/gh/sigmafelix/speed/graph/badge.svg?token=EARXDXZPTY)](https://codecov.io/gh/sigmafelix/speed)
 
+[![cov](https://sigmafelix.github.io/speed/badges/coverage.svg)](https://github.com/sigmafelix/speed/actions)
+
+
 # `speedmat`
 Spatially-Enhanced and Entropy-Derived Contiguity Matrix (SpEED)
 
