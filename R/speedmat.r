@@ -140,7 +140,7 @@ scale_minmax <- function(x) {(x - min(x)) / (max(x) - min(x))}
 #'  divergence, resulting in range [0,1]
 #' @author Insang Song (sigmafelix@hotmail.com)
 #' @export
-#' @useDynLib speedmat
+#' @useDynLib speed
 speedmat <- function(data,
                      formula,
                      outcome = 'outcome',
