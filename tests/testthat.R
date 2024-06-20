@@ -7,6 +7,6 @@
 # * https://testthat.r-lib.org/articles/special-files.html
 
 library(testthat)
-library(speedmat)
+library(speed)
 
-test_check("speedmat")
+test_check("speed")
