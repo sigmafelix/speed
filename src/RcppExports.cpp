@@ -13,7 +13,7 @@ Rcpp::Rostream<false>& Rcpp::Rcerr = Rcpp::Rcpp_cerr_get();
 
 // cppJSD
 double cppJSD(const arma::vec& p, const arma::vec& q);
-RcppExport SEXP _speedmat_cppJSD(SEXP pSEXP, SEXP qSEXP) {
+RcppExport SEXP _speed_cppJSD(SEXP pSEXP, SEXP qSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -25,7 +25,7 @@ END_RCPP
 }
 // distJSD
 Rcpp::NumericMatrix distJSD(const Rcpp::NumericMatrix& inMatrix);
-RcppExport SEXP _speedmat_distJSD(SEXP inMatrixSEXP) {
+RcppExport SEXP _speed_distJSD(SEXP inMatrixSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -36,7 +36,7 @@ END_RCPP
 }
 // distJSD2
 Rcpp::NumericMatrix distJSD2(const Rcpp::NumericMatrix& inMatrixTr, const Rcpp::NumericMatrix& inMatrixCo);
-RcppExport SEXP _speedmat_distJSD2(SEXP inMatrixTrSEXP, SEXP inMatrixCoSEXP) {
+RcppExport SEXP _speed_distJSD2(SEXP inMatrixTrSEXP, SEXP inMatrixCoSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -48,13 +48,13 @@ END_RCPP
 }
 
 static const R_CallMethodDef CallEntries[] = {
-    {"_speedmat_cppJSD", (DL_FUNC) &_speedmat_cppJSD, 2},
-    {"_speedmat_distJSD", (DL_FUNC) &_speedmat_distJSD, 1},
-    {"_speedmat_distJSD2", (DL_FUNC) &_speedmat_distJSD2, 2},
+    {"_speed_cppJSD", (DL_FUNC) &_speed_cppJSD, 2},
+    {"_speed_distJSD", (DL_FUNC) &_speed_distJSD, 1},
+    {"_speed_distJSD2", (DL_FUNC) &_speed_distJSD2, 2},
     {NULL, NULL, 0}
 };
 
-RcppExport void R_init_speedmat(DllInfo *dll) {
+RcppExport void R_init_speed(DllInfo *dll) {
     R_registerRoutines(dll, NULL, CallEntries, NULL, NULL);
     R_useDynamicSymbols(dll, FALSE);
 }

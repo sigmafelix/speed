@@ -3,7 +3,7 @@
 [![cov](https://sigmafelix.github.io/speed/badges/coverage.svg)](https://github.com/sigmafelix/speed/actions)
 
 
-# `speedmat`
+# `speed`
 Spatially-Enhanced and Entropy-Derived Contiguity Matrix (SpEED)
 
 # Installation
