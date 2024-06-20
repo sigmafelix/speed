@@ -26,6 +26,7 @@ jobs:
             extra-packages: |
                 any::pak
                 any::covr
+                any::DT
                 any::devtools
                 any::htmltools
                 

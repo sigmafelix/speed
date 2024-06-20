@@ -13,7 +13,6 @@ jobs:
     runs-on: ubuntu-latest
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
-      CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }} # Add this line
 
     steps:
       - uses: actions/checkout@v3
@@ -24,7 +23,7 @@ jobs:
 
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
-          extra-packages: any::covr
+          extra-packages: any::covr, any::DT, any::htmltools
           needs: coverage
 
       - name: Test coverage
@@ -50,6 +49,3 @@ jobs:
           name: coverage-test-failures
           path: ${{ runner.temp }}/package
 
-      - name: Upload coverage to Codecov # Add this step
-        run: |
-          Rscript -e "covr::codecov(token = Sys.getenv('CODECOV_TOKEN'))"
