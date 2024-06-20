@@ -110,8 +110,11 @@ speedmat_legacy <- function(sf,
 }
 
 
-
-scale_minmax = function(x) {(x - min(x)) / (max(x) - min(x))}
+#' Max-Min scaling
+#' @param x numeric vector
+#' @returns numeric vector
+#' @export
+scale_minmax <- function(x) {(x - min(x)) / (max(x) - min(x))}
 
 
 #' @title SpEED matrix for matching analysis

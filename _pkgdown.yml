@@ -1,0 +1,27 @@
+url: https://niehs.github.io/amadeus/
+template:
+  bootstrap: 5
+  bootswatch: minty
+
+navbar:
+  structure:
+    left:  [reference, search]
+    right: [github]
+
+home:
+  links:
+  - text: Coverage
+    href: /coverage_report.html
+
+references:
+  - subtitle: Core functions
+  - contents:
+    - starts_with("speedmat_")
+  
+  - subtitle: Low-level functions
+  - contents:
+    - includes("JSD")
+  
+  - subtitle: Helpers
+  - contents:
+    - 
