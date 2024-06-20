@@ -24,4 +24,5 @@ references:
   
   - subtitle: Helpers
   - contents:
-    - 
+    - scale_minmax
+    - plot_dists

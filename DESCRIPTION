@@ -1,4 +1,4 @@
-Package: speedmat
+Package: speed
 Type: Package
 Title: Spatially Enhanced and Entropy-Derived Contiguity Matrix (SpEED)
 Version: 0.3.0
@@ -11,3 +11,7 @@ LazyData: true
 RoxygenNote: 7.3.1
 LinkingTo: Rcpp, RcppArmadillo
 Imports: Rcpp, sf, dplyr, nngeo, spdep, testthat (>= 3.0.0), covr, ggplot2, withr, pkgdown
+Config/Needs/website: tidyverse/tidytemplate
+Config/testhat/edition: 3
+URL: https://github.com/sigmafelix/speed,
+https://sigmafelix.github.io/speed/
