@@ -5,13 +5,9 @@ template:
 
 navbar:
   structure:
-    left:  [reference, search]
+    left:  [reference, articles, search]
     right: [github]
 
-home:
-  links:
-  - text: Coverage
-    href: docs/coverage_report.html
 
 references:
   - subtitle: Core functions
@@ -26,3 +22,7 @@ references:
   - contents:
     - scale_minmax
     - plot_dists
+
+articles:
+  - text: Coverage report
+    href: articles/coverage_report.html

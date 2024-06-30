@@ -82,7 +82,7 @@ jobs:
           uses: actions/download-artifact@v4
           with:
             name: covr-report
-            path: docs/coverage_report.html
+            path: docs/articles/coverage_report.html
 
         - name: Deploy to GitHub pages 🚀
           if: github.event_name != 'pull_request'
