@@ -1,0 +1,3595 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+<link href="lib/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet" />
+<script src="lib/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+<link href="lib/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
+<script src="lib/datatables-binding-0.33/datatables.js"></script>
+<script src="lib/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<link href="lib/dt-core-1.13.6/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="lib/dt-core-1.13.6/css/jquery.dataTables.extra.css" rel="stylesheet" />
+<script src="lib/dt-core-1.13.6/js/jquery.dataTables.min.js"></script>
+<link href="lib/crosstalk-1.2.1/css/crosstalk.min.css" rel="stylesheet" />
+<script src="lib/crosstalk-1.2.1/js/crosstalk.min.js"></script>
+<link href="lib/highlight.js-6.2/rstudio.css" rel="stylesheet" />
+<script src="lib/highlight.js-6.2/highlight.pack.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="lib/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<link href="lib/bootstrap-3.3.5/css/bootstrap-theme.min.css" rel="stylesheet" />
+<script src="lib/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="lib/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="lib/bootstrap-3.3.5/shim/respond.min.js"></script>
+
+</head>
+<body>
+<div class="container-fluid">
+  <style type="text/css">table tr:hover td {
+  font-weight:bold;text-decoration:none
+}
+table tr.covered td{
+  background-color:rgba(95,151,68,0.3)
+}
+
+table tr:hover.covered .num{
+  background-color:rgba(95,151,68,0.7)
+}
+table tr.missed td{
+  background-color:rgba(185,73,71,0.3)
+}
+table tr:hover.missed .num{
+  background-color:rgba(185,73,71,0.7)
+}
+
+table tr.missed:hover td{
+  -webkit-box-shadow:0 -2px 0 0 #b94947 inset;
+  -moz-box-shadow:0 -2px 0 0 #b94947 inset;
+  box-shadow:0 -2px 0 0 #b94947 inset
+}
+table tr.covered:hover td{
+  -webkit-box-shadow:0 -2px 0 0 #5f9744 inset;
+  -moz-box-shadow:0 -2px 0 0 #5f9744 inset;
+  box-shadow:0 -2px 0 0 #5f9744 inset
+}
+
+table tr.never td{
+  background-color:transparent
+}
+
+table tbody {
+  border-style: solid;
+  border: 1px solid rgba(0,0,0,0.1)
+}
+
+table .num {
+  border-right: 1px solid rgba(0,0,0,0.1)
+}
+
+td.coverage em {
+  opacity: 0.5;
+}
+
+table td.coverage {
+  border-right: 1px solid rgba(0,0,0,0.1);
+  font-weight: bold;
+  text-align: center;
+}
+table.table-condensed pre {
+  background-color: transparent;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 11px;
+}
+div#files td {
+  padding: 0;
+  padding-left: 5px;
+}
+
+div#files td.num {
+  padding-right: 5px;
+}
+
+table.table-condensed {
+  font-size: 11px;
+}</style>
+  <div class="col-md-8 col-md-offset-2">
+    <h2>speed coverage - 9.87%</h2>
+    <div class="tabbable">
+      <ul class="nav nav-tabs" data-tabsetid="covr">
+        <li class="active">
+          <a href="#tab-covr-1" data-toggle="tab" data-value="Files">Files</a>
+        </li>
+        <li>
+          <a href="#tab-covr-2" data-toggle="tab" data-value="Source">Source</a>
+        </li>
+      </ul>
+      <div class="tab-content" data-tabsetid="covr">
+        <div class="tab-pane active" title="Files" data-value="Files" id="tab-covr-1">
+          <div class="datatables html-widget html-fill-item" id="htmlwidget-b747b94c4b88c35154fe" style="width:100%;height:500px;"></div>
+          <script type="application/json" data-for="htmlwidget-b747b94c4b88c35154fe">{"x":{"filter":"none","vertical":false,"fillContainer":false,"data":[["<a href=\"#\">R/speedmat.r<\/a>","<a href=\"#\">src/distJSD.cpp<\/a>"],[432,62],[198,22],[0,21],[198,1],["0","2269"],["0.00%","95.45%"]],"container":"<table class=\"row-border\">\n  <thead>\n    <tr>\n      <th>File<\/th>\n      <th>Lines<\/th>\n      <th>Relevant<\/th>\n      <th>Covered<\/th>\n      <th>Missed<\/th>\n      <th>Hits / Line<\/th>\n      <th>Coverage<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"searching":false,"dom":"t","paging":false,"columnDefs":[{"targets":6,"createdCell":"function(td, cellData, rowData, row, col) {\n  var percent = cellData.replace(\"%\", \"\");\n  if (percent > 90) {\n    var grad = \"linear-gradient(90deg, #edfde7 \" + cellData + \", white \" + cellData + \")\";\n  } else if (percent > 75) {\n    var grad = \"linear-gradient(90deg, #f9ffe5 \" + cellData + \", white \" + cellData + \")\";\n  } else {\n    var grad = \"linear-gradient(90deg, #fcece9 \" + cellData + \", white \" + cellData + \")\";\n  }\n  $(td).css(\"background\", grad);\n}\n"},{"className":"dt-right","targets":[1,2,3,4]},{"name":"File","targets":0},{"name":"Lines","targets":1},{"name":"Relevant","targets":2},{"name":"Covered","targets":3},{"name":"Missed","targets":4},{"name":"Hits / Line","targets":5},{"name":"Coverage","targets":6}],"order":[],"autoWidth":false,"orderClasses":false},"callback":"function(table) {\ntable.on('click.dt', 'a', function() {\n  files = $('div#files div');\n  files.not('div.hidden').addClass('hidden');\n  id = $(this).text();\n  files.filter('div[id=\\'' + id + '\\']').removeClass('hidden');\n  $('ul.nav a[data-value=Source]').text(id).tab('show');\n});\n}"},"evals":["options.columnDefs.0.createdCell","callback"],"jsHooks":[]}</script>
+        </div>
+        <div class="tab-pane" title="Source" data-value="Source" id="tab-covr-2">
+          <div id="files">
+            <div id="R/speedmat.r" class="hidden">
+              <table class="table-condensed">
+                <tbody>
+                  <tr class="never">
+                    <td class="num">1</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">### SpEED function code</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">2</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">#' @export</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">3</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">speedmat_legacy &lt;- function(sf,</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">4</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">                     mode = "CDE", # "CE"/"DE"/"CDE"</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">5</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">                     input_vars = c(), # Contiguity Distance Entropy</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">6</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">                     bandwidth = NULL, # bandwidth: Currently only supports gaussian</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">7</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">                     q_jsd = 0.05,     # quantile of j-s divergence</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">8</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">                     kneigh = NULL,    # k-nearest neighbor for point data</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">9</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">                     queen = TRUE,     # Queen's contiguity for "C" mode for polygon data</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">10</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">                     cutoff_dist = NULL,</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">11</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">                     cutoff_weightd = 0.001,</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">12</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">                     cutoff_weightc = 0.001,</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">13</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">                     sup_factor = 0.5) {</pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">14</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">  if (is.null(bandwidth) &amp;&amp; grepl("D", mode))</pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">15</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">    stop("No bandwidth was entered")</pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">16</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">  if (length(input_vars) == 0)</pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">17</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">    stop("No input variable were specified")</pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">18</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">  if (!grepl("E", mode))</pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">19</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">    stop("Please use the methods for standard spatial weight matrices for</pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">20</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">     non-entropy matrices")</pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">21</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">  if (!is.null(bandwidth)) {</pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">22</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">    cutoff_dist &lt;- bandwidth</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">23</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">  }</pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">24</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">  sfp &lt;- sf[1, ]</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">25</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r"></pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">26</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">  sf_ent &lt;- sf |&gt;</pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">27</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">    dplyr::select(input_vars) |&gt;</pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">28</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">    sf::st_set_geometry(NULL) |&gt;</pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">29</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">    dplyr::mutate_at(.vars = dplyr::vars(input_vars),</pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">30</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">                     .funs = list(~as.vector(scale(.)))) |&gt;</pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">31</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">    dplyr::mutate_at(.vars = dplyr::vars(dplyr::everything()),</pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">32</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">                     .funs = list(~. + abs(min(.)))) |&gt;</pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">33</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">    as.matrix() |&gt;</pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">34</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">    philentropy::JSD()</pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">35</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">  sf_ent &lt;- sf_ent * (sf_ent &lt;= quantile(sf_ent, q_jsd))</pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">36</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">  sf_ent_ex &lt;- exp(-1 * sf_ent)</pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">37</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">  sf_ent_f &lt;- (sf_ent_ex * (sf_ent_ex != 1))</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">38</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r"></pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">39</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">  if (grepl("C", mode)){</pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">40</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">    if (queen){</pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">41</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">      pat &lt;- 'F***T****'</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">42</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">    } else {</pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">43</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">      pat &lt;- 'F***1****'</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">44</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">    }</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">45</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r"></pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">46</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">    if (any(sf::st_is(sfp, 'POLYGON'),</pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">47</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">            sf::st_is(sfp, 'MULTIPOLYGON'),</pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">48</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">            sf::st_is(sfp, "POLYGON Z"),</pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">49</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">            sf::st_is(sfp, "MULTIPOLYGON Z"))) {</pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">50</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">      sf_touch &lt;-</pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">51</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">        sf::st_relate(sf, pattern = pat) |&gt; #poly2nb(sf, queen = queen) %&gt;%</pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">52</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">        as("matrix")</pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">53</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">      sf_touch_ &lt;- sf_touch</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">54</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">    } else {</pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">55</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">      sf_touch &lt;- st_nn(sf, sf, k = kneigh + 1, sparse = FALSE, returnDist = TRUE) #%&gt;%</pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">56</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">      sf_touch_ &lt;- sf_touch</pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">57</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">      sf_touch_nn &lt;- sf_touch$nn</pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">58</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">      diag(sf_touch_nn) &lt;- FALSE</pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">59</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">      sf_touch &lt;- sf_touch_nn</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">60</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">    }</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">61</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">  # 122820</pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">62</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">  sf_invdv &lt;- ((1-sup_factor)*sf_touch) + (sup_factor * sf_ent_f)</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">63</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">  }</pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">64</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">  if (grepl("D", mode)) {</pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">65</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">    if (any(sf::st_is(sfp, 'POLYGON'),</pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">66</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">            sf::st_is(sfp, 'MULTIPOLYGON'),</pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">67</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">            sf::st_is(sfp, "POLYGON Z"),</pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">68</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">            sf::st_is(sfp, "MULTIPOLYGON Z"))) {</pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">69</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">      sf_interd &lt;- as(sf::st_distance(sf::st_centroid(sf)), 'matrix')</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">70</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">    } else {</pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">71</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">      sf_interd &lt;- as(sf::st_distance(sf), 'matrix')</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">72</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">    }</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">73</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r"></pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">74</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">    sf_interd &lt;- sf_interd * (sf_interd &lt;= cutoff_dist)</pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">75</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">    sf_invd &lt;- exp(-1 * ((sf_interd ^ 2) / (bandwidth ^ 2)))</pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">76</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">    sf_invd &lt;- sf_invd * (sf_invd != 1)</pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">77</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">    diag(sf_invd) &lt;- 0</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">78</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r"></pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">79</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">    if (grepl("^C", mode)) {</pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">80</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">      if (!any(sf::st_is(sfp, 'POLYGON'),</pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">81</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">               sf::st_is(sfp, 'MULTIPOLYGON'),</pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">82</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">               sf::st_is(sfp, "POLYGON Z"),</pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">83</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">               sf::st_is(sfp, "MULTIPOLYGON Z"))) {</pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">84</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">        sf_touch_ &lt;- sf_touch</pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">85</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">        sf_touch_d &lt;- do.call(c, sf_touch_$dist)</pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">86</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">        sf_touch_d &lt;- sf_touch_d[sf_touch_d != 0]</pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">87</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">        sf_touch_nn[sf_touch_nn == TRUE] &lt;- sf_touch_d</pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">88</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">        sf_touch &lt;- sf_touch_nn</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">89</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">      }</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">90</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r"></pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">91</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">      sf_invdv &lt;-</pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">92</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">        ((1 - sup_factor) * (sf_touch * sf_invd)) + (sup_factor * sf_ent_f)</pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">93</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">      sf_invdv &lt;-</pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">94</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">        sf_invdv * (sf_invdv &gt;= cutoff_weightc)</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">95</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">    } else {</pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">96</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">      sf_invdv &lt;-</pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">97</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">        ((1-sup_factor)* (sf_invd * (sf_invd &gt;= cutoff_weightd))) + (sup_factor * sf_ent_f)</pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">98</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">      sf_invdv &lt;- sf_invdv * (sf_invdv &gt;= cutoff_weightc)</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">99</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">    }</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">100</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">  }</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">101</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r"></pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">102</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">  # error check</pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">103</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">  checksum &lt;- apply(sf_invdv, 1, sum)</pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">104</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">  if (any(is.nan(checksum) | checksum == 0)) {</pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">105</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">    addr_check &lt;- (is.nan(checksum) | checksum == 0)</pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">106</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">    diag(sf_invdv)[addr_check] &lt;- 1</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">107</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">  }</pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">108</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">  speedmat &lt;- sf_invdv / apply(sf_invdv, 1, sum)</pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">109</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">  return(speedmat)</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">110</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">}</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">111</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r"></pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">112</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r"></pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">113</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">#' Max-Min scaling</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">114</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">#' @param x numeric vector</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">115</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">#' @returns numeric vector</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">116</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">#' @export</pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">117</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">scale_minmax &lt;- function(x) {(x - min(x)) / (max(x) - min(x))}</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">118</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r"></pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">119</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r"></pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">120</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">#' @title SpEED matrix for matching analysis</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">121</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">#' @description Returns spatially enhanced and entropy-derived matrix (SpEED)</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">122</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">#'  for matching analysis</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">123</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">#' @param data sf object. Should include outcome, treatment, and</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">124</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">#'  coordinates (if \code{speed_mode == "coord"})</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">125</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">#' @param formula formula. in \code{y ~ x} form.</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">126</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">#' @param outcome character(1). Outcome variable name.</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">127</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">#' Default is \code{'outcome'}</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">128</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">#' @param treatment character(1). Treatment variable name.</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">129</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">#' Default is \code{'treatment'}</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">130</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">#' @param mode_speed character(1). One of \code{'product'} \code{(JSD\%*\%D)} or</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">131</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">#'  \code{'coord'} \code{(JSD(cbind(covariates, X, Y)))}</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">132</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">#' @param coords character(2). Names of the columns with x- and y-dimension</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">133</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">#'  coordinates. Only valid for \code{mode_speed=='coord'}</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">134</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">#' @param coords_factor numeric(1).</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">135</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">#'  Coordinate weights after standardization.</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">136</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">#'  Only valid when \code{mode_speed=='coord'}</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">137</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">#' @param caliper_s numeric(1). Caliper for distance</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">138</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">#' @param caliper_jsd numeric(1). Caliper for divergence value</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">139</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">#' @param scale logical(1). Min-max scaling for both distance and</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">140</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">#'  divergence, resulting in range [0,1]</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">141</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">#' @author Insang Song (sigmafelix@hotmail.com)</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">142</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">#' @export</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">143</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">#' @useDynLib speed</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">144</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">speedmat &lt;- function(data,</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">145</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">                     formula,</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">146</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">                     outcome = 'outcome',</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">147</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">                     treatment = 'treatment',</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">148</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">                     mode_speed = 'product',</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">149</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">                     coords = NULL,</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">150</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">                     coords_factor = NULL,</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">151</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">                     caliper_s = NULL,</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">152</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">                     caliper_jsd = NULL,</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">153</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">                     scale = FALSE) {</pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">154</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">  if (!mode_speed %in% c('product', 'product2', 'coord')) {</pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">155</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">    stop("The argument mode_speed should be one of 'product' or 'coord'")</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">156</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">  }</pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">157</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">  if ((mode_speed == 'coord' &amp;&amp; (is.null(coords) || is.null(coords_factor)))) {</pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">158</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">    stop("No coords and coords_factor arguments.</pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">159</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">    Check if you set the correct value for mode_speed\n")</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">160</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">  }</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">161</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r"></pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">162</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">  speedmat_res &lt;-</pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">163</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">    switch(mode_speed,</pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">164</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">           product = speedmat.jsdist(data,</pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">165</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">                                     formula,</pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">166</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">                                     outcome,</pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">167</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">                                     treatment,</pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">168</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">                                     caliper_s = caliper_s,</pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">169</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">                                     caliper_jsd = caliper_jsd,</pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">170</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">                                     scale = scale),</pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">171</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">           product2 = speedmat.jsdist.m(data,</pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">172</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">                                        formula,</pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">173</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">                                        outcome,</pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">174</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">                                        treatment,</pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">175</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">                                        caliper_s = caliper_s,</pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">176</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">                                        caliper_jsd = caliper_jsd,</pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">177</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">                                        scale = scale),</pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">178</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">           coord = speedmat.coord(data,</pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">179</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">                                  formula,</pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">180</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">                                  outcome,</pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">181</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">                                  treatment,</pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">182</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">                                  coords,</pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">183</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">                                  coords_factor))</pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">184</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">  return(speedmat_res)</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">185</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">}</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">186</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r"></pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">187</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r"></pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">188</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">#' @title SpEED matrix by accounting for the weighted coordinate variables</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">189</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">#' @description Returns the Jensen-Shannon divergence with weighted coordinates</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">190</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">#' @param data sf object. Should include outcome, treatment, and coordinates </pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">191</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">#' @param formula formula. in \code{y ~ x} form.</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">192</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">#' @param outcome character(1). Outcome variable name.</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">193</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">#' Default is \code{'outcome'}</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">194</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">#' @param treatment character(1). Treatment variable name.</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">195</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">#' Default is \code{'treatment'}</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">196</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">#' @param coords character(2). Names of the columns with x- and y-dimension</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">197</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">#' coordinates.</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">198</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">#' @param coords_factor numeric(1). Coordinate weights after standardization. </pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">199</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">#' @author Insang Song (sigmafelix@hotmail.com)</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">200</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">#' @export</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">201</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">speedmat.coord &lt;-</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">202</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">  function(data,</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">203</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">           formula,</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">204</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">           outcome = 'outcome',</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">205</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">           treatment = 'treatment',</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">206</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">           coords = c('X', 'Y'),</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">207</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">           coords_factor = 10L) {</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">208</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r"></pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">209</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">    mat_mm &lt;- model.matrix(formula, data)[, -1]</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">210</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r"></pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">211</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">    formula_ext &lt;- formula</pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">212</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">    mat_mf &lt;- model.frame(formula_ext, data)</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">213</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">    # 092422</pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">214</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">    mat_mf &lt;- mat_mf[, sapply(mat_mf, function(x) length(unique(x)) != 0)]</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">215</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r"></pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">216</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">    print(dim(mat_mf))</pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">217</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">    mat_mmsc &lt;- mat_mm |&gt;</pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">218</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">      apply(2, function(x) scale_minmax(x) + 0.001)</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">219</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r"></pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">220</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">    mat_mmsc[, coords] &lt;- mat_mmsc[, coords] * coords_factor</pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">221</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">    mat_jsd &lt;- distJSD(t(mat_mmsc))</pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">222</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">    mat_jsdt &lt;- t(mat_jsd)</pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">223</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">    mat_jsd &lt;- mat_jsd + mat_jsdt</pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">224</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">    gc()</pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">225</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">    return(mat_jsd) #mat_jsd instead?</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">226</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r"></pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">227</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">}</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">228</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r"></pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">229</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">#' @title SpEED matrix by multiplying Jensen-Shannon divergence and</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">230</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">#'  geodesic distance (in km)</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">231</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">#' @description Returns a SpEED matrix, which is the product of</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">232</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">#'  Jensen-Shannon divergence and geographic distance matrix</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">233</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">#' @param data sf object. Should include outcome, treatment, and</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">234</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">#'  coordinates</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">235</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">#' @param formula formula. in y ~ x form.</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">236</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">#' @param outcome character(1). Outcome variable name. default is 'outcome'</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">237</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">#' @param treatment character(1). Treatment variable name.</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">238</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">#' Default is 'treatment'</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">239</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">#' @param caliper_s numeric(1). Caliper for distance</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">240</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">#' @param caliper_jsd numeric(1). Caliper for divergence value</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">241</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">#' @param scale logical(1). Min-max scaling for both distance and</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">242</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">#'  divergence, resulting in range [0,1]</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">243</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">#' @param zero_adjust numeric(1). The minimum after min-max scaling.</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">244</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">#' This is for avoiding zeros in divergence computation.</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">245</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">#' @author Insang Song (sigmafelix@hotmail.com)</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">246</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">#' @export</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">247</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">speedmat.jsdist &lt;- function(data,</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">248</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">                            formula,</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">249</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">                            outcome = 'outcome',</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">250</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">                            treatment = 'treatment',</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">251</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">                            caliper_s = NULL,</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">252</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">                            caliper_jsd = NULL,</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">253</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">                            scale = FALSE,</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">254</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">                            zero_adjust = 1) {</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">255</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r"></pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">256</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">  mat_mm &lt;- model.matrix(formula, data)[, -1]</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">257</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r"></pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">258</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">  formula_ext &lt;- formula</pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">259</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">  mat_mf &lt;- model.frame(formula_ext, data)</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">260</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">  # 092422</pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">261</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">  mat_mf &lt;- mat_mf[, sapply(mat_mf, function(x) length(unique(x)) != 0)]</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">262</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r"></pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">263</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">  mat_mf_dim &lt;- dim(mat_mf)</pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">264</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">  cat(sprintf("Valid data dimension: [%d, %d]\n", mat_mf_dim[1], mat_mf_dim[2]))</pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">265</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">  mat_mmsc &lt;- apply(mat_mm, 2, function(x) scale_minmax(x) + zero_adjust)</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">266</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r"></pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">267</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">  mat_jsd &lt;- distJSD(mat_mmsc)</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">268</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r"></pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">269</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">  mat_geodist &lt;- sf::st_distance(data) # meters</pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">270</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">  mat_geodist &lt;- units::drop_units(mat_geodist)</pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">271</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">  if (scale) {</pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">272</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">    mat_geodist_sc &lt;- scale_minmax(mat_geodist) + zero_adjust</pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">273</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">    mat_jsd &lt;- scale_minmax(mat_jsd) + zero_adjust</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">274</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">  } else {</pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">275</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">    mat_geodist_sc &lt;- mat_geodist</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">276</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">  }</pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">277</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">  if (!is.null(caliper_s)) {</pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">278</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">    mat_geodist_sc[which(mat_geodist &gt; caliper_s)] &lt;- Inf # 1/min(mat_geodist)</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">279</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">  }</pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">280</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">  if (!is.null(caliper_jsd)) {</pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">281</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">    mat_jsd[which(mat_jsd - 0.001 &gt; caliper_jsd)] &lt;- Inf # 1/min(mat_jsd)</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">282</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">  }</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">283</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r"></pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">284</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">  # Hadamard product</pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">285</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">  mat_jsdd &lt;- mat_jsd * mat_geodist_sc</pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">286</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">  return(mat_jsdd) #mat_jsd instead?</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">287</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r"></pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">288</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">}</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">289</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r"></pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">290</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r"></pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">291</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">#' @title SpEED matrix by multiplying Jensen-Shannon divergence and</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">292</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">#'  geodesic distance (in km) -- efficient version</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">293</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">#' @description Returns a SpEED matrix, which is the product of</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">294</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">#'  Jensen-Shannon divergence and geographic distance matrix</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">295</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">#' @param data sf object. Should include outcome, treatment, and</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">296</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">#'  coordinates</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">297</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">#' @param formula formula. in y ~ x form.</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">298</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">#' @param outcome character(1). Outcome variable name. default is 'outcome'</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">299</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">#' @param treatment character(1). Treatment variable name.</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">300</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">#'  Default is 'treatment'</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">301</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">#' @param caliper_s numeric(1). Caliper for distance</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">302</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">#' @param caliper_jsd numeric(1). Caliper for divergence value</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">303</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">#' @param scale logical(1). Min-max scaling for both distance and</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">304</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">#'  divergence, resulting in range [0,1]</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">305</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">#' @param zero_adjust numeric(1). The minimum after min-max scaling.</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">306</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">#' @author Insang Song (sigmafelix@hotmail.com)</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">307</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">#' @export</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">308</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">speedmat.jsdist.m &lt;- function(data,</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">309</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">                              formula,</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">310</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">                              outcome = 'outcome',</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">311</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">                              treatment = 'treatment',</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">312</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">                              caliper_s = NULL,</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">313</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">                              caliper_jsd = NULL,</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">314</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">                              scale = FALSE,</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">315</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">                              zero_adjust = 1) {</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">316</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r"></pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">317</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">  if (length(unique(data[[treatment]])) &lt; 2) {</pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">318</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">    stop("The data appears to have less than two treatment values.</pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">319</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">    Please check your data has relevant values in the treatment column</pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">320</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">    (suggestion: 0/1).")</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">321</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">  }</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">322</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r"></pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">323</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">  indx_tr &lt;- which(data[[treatment]] &gt; 0)</pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">324</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">  indx_co &lt;- which(data[[treatment]] == 0)</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">325</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r"></pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">326</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">  mat_mm &lt;- model.matrix(formula, data)[, -1]</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">327</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r"></pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">328</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">  data_tr &lt;- data[indx_tr, ]</pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">329</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">  data_co &lt;- data[indx_co, ]</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">330</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">  # formula_ext = update.formula(formula, as.formula(paste('.~.+', outcome)))</pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">331</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">  formula_ext &lt;- formula</pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">332</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">  mat_mf &lt;- model.frame(formula_ext, data)</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">333</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">  # 092422</pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">334</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">  mat_mf &lt;- mat_mf[, sapply(mat_mf, function(x) length(unique(x)) != 0)]</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">335</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r"></pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">336</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">  print(dim(mat_mf))</pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">337</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">  mat_mmsc &lt;- apply(mat_mm, 2, function(x) scale_minmax(x) + zero_adjust)</pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">338</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">  mat_mm_tr &lt;- mat_mmsc[indx_tr,]</pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">339</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">  mat_mm_co &lt;- mat_mmsc[indx_co,]</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">340</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r"></pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">341</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">  mat_jsd &lt;- distJSD2(mat_mm_tr, mat_mm_co)</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">342</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r"></pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">343</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">  mat_geodist &lt;- sf::st_distance(data_tr, data_co)</pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">344</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">  mat_geodist &lt;- units::drop_units(mat_geodist)</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">345</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r"></pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">346</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">  if (scale) {</pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">347</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">    mat_geodist_sc &lt;- scale_minmax(mat_geodist) + zero_adjust</pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">348</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">    mat_jsd &lt;- scale_minmax(mat_jsd) + zero_adjust</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">349</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">  } else {</pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">350</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">    mat_geodist_sc &lt;- mat_geodist</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">351</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">  }</pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">352</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">  if (!is.null(caliper_s)) {</pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">353</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">    mat_geodist_sc[which(mat_geodist &gt; caliper_s)] &lt;- Inf # 1/min(mat_geodist)</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">354</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">  }</pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">355</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">  if (!is.null(caliper_jsd)) {</pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">356</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">    mat_jsd[which(mat_jsd - zero_adjust &gt; caliper_jsd)] &lt;- Inf # 1/min(mat_jsd)</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">357</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">  }</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">358</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">  # Hadamard product</pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">359</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">  mat_jsdd &lt;- mat_jsd * mat_geodist_sc</pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">360</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">  return(mat_jsdd)</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">361</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r"></pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">362</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">}</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">363</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r"></pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">364</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r"></pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">365</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">#' @title Plot the distribution of geographic distance and</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">366</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">#'  Jensen-Shannon divergence</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">367</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">#' @description Shows a multi-panel plot which displays histograms of</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">368</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">#'  geographic distance and JSD</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">369</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">#' @param data sf object. Should include outcome, treatment, and</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">370</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">#'  coordinates</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">371</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">#' @param formula formula. in y ~ x form.</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">372</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">#' @param outcome character(1). Outcome variable name. Default is 'outcome'</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">373</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">#' @param treatment character(1). Treatment variable name.</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">374</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">#' Default is 'treatment'</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">375</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">#' @author Insang Song (sigmafelix@hotmail.com)</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">376</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">#' @import ggplot2</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">377</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">#' @export</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">378</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">plot_dists &lt;- function(mode = "infunc",</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">379</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">                       data = NULL,</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">380</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">                       formula = NULL,</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">381</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">                       outcome = NULL,</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">382</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">                       treatment = NULL) {</pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">383</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">  if (length(unique(data[[treatment]])) &lt; 2) {</pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">384</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">    stop("The data appears to have less than two treatment values.</pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">385</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">    Please check your data has relevant values in the treatment column</pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">386</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">    (suggestion: 0/1).")</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">387</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">  }</pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">388</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">  if (!mode %in% c("infunc", "independent")) {</pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">389</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">    stop("mode argument should be one of 'infunc' or 'independent.'\n")</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">390</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">  }</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">391</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r"></pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">392</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">  if (mode == "independent") {</pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">393</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">    indx_tr &lt;- which(data[[treatment]] &gt; 0)</pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">394</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">    indx_co &lt;- which(data[[treatment]] == 0)</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">395</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r"></pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">396</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">    mat_mm &lt;- model.matrix(formula, data)[, -1]</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">397</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r"></pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">398</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">    data_tr &lt;- data[indx_tr, ]</pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">399</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">    data_co &lt;- data[indx_co, ]</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">400</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r"></pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">401</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">    formula_ext &lt;- formula</pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">402</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">    mat_mf &lt;- model.frame(formula_ext, data)</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">403</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">    # 092422</pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">404</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">    mat_mf &lt;- mat_mf[, sapply(mat_mf, function(x) length(unique(x)) != 0)]</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">405</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r"></pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">406</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">    print(dim(mat_mf))</pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">407</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">    mat_mmsc &lt;- apply(mat_mm, 2, function(x) scale_minmax(x) + 0.001)</pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">408</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">    mat_mm_tr &lt;- mat_mmsc[indx_tr, ]</pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">409</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">    mat_mm_co &lt;- mat_mmsc[indx_co, ]</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">410</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r"></pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">411</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">    vec_jsd &lt;- as.vector(distJSD2(mat_mm_tr, mat_mm_co))</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">412</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r"></pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">413</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">    mat_geodist &lt;- sf::st_distance(data_tr, data_co) </pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">414</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">    vec_geodist &lt;- as.vector(units::drop_units(mat_geodist))</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">415</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">  } else {</pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">416</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">    mat_geodist &lt;- sf::st_distance(data_tr, data_co) </pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">417</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">    vec_geodist &lt;- as.vector(units::drop_units(mat_geodist))</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">418</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">  }</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">419</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r"></pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">420</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">  data_dist &lt;- data.frame(</pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">421</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">    rbind(</pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">422</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">      cbind(disttype = "Geographic distance", value = vec_geodist),</pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">423</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">      cbind(disttype = "Jensen-Shannon divergence", value = vec_jsd)</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">424</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">    )</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">425</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">  )</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">426</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r"></pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">427</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">  ggplot2::ggplot(data = data_dist,</pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">428</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">         mapping = aes(x = value, color = disttype)) +</pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">429</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">    ggplot2::theme_bw() +</pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">430</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">    ggplot2::geom_histogram(bins = 100) +</pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">431</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">    ggplot2::facet_wrap(~disttype, scales = "free")</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">432</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">}</pre>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div id="src/distJSD.cpp" class="hidden">
+              <table class="table-condensed">
+                <tbody>
+                  <tr class="never">
+                    <td class="num">1</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">#include &lt;RcppArmadillo.h&gt;</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">2</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">#include &lt;cmath&gt;</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">3</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">//using namespace Rcpp;</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">4</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">// [[Rcpp::depends(RcppArmadillo)]]</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">5</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r"></pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">6</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">//' @export</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">7</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">// [[Rcpp::export]]</pre>
+                    </td>
+                  </tr>
+                  <tr class="covered">
+                    <td class="num">8</td>
+                    <td class="coverage">4974<em>x</em></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">double cppJSD(const arma::vec&amp; p, const arma::vec&amp; q) {</pre>
+                    </td>
+                  </tr>
+                  <tr class="covered">
+                    <td class="num">9</td>
+                    <td class="coverage">9948<em>x</em></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">  arma::vec m = 0.5 * (p + q);</pre>
+                    </td>
+                  </tr>
+                  <tr class="covered">
+                    <td class="num">10</td>
+                    <td class="coverage">9948<em>x</em></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">  double jsd = 0.5 * (arma::accu(p % arma::log2(p / m)) + arma::accu(q % arma::log2(q / m)));</pre>
+                    </td>
+                  </tr>
+                  <tr class="covered">
+                    <td class="num">11</td>
+                    <td class="coverage">4974<em>x</em></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">  return jsd;</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">12</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">}</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">13</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">// double cppJSD(const Rcpp::NumericVector&amp; x, const Rcpp::NumericVector&amp; y) {</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">14</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">//   return (0.5 * (Rcpp::sum(x * Rcpp::log(x/((x+y)/2))) +</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">15</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">//                           Rcpp::sum(y * Rcpp::log(y/((x+y)/2)))));</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">16</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">// }</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">17</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r"></pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">18</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">//' @name distJSD</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">19</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">//' @title Jensen-Shannon divergence</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">20</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">//' </pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">21</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">//' @description Computes Jensen-Shannon divergence, which is based on Kullback-Leibler divergence. deq(\text{JSD}(A||B)=\frac{1}{2} \left( \text{KL}(A||M)+\text{KL}(B||M) \right))</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">22</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">//' </pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">23</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">//' @param inMatrix a positive-valued numeric matrix.</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">24</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">//' @export</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">25</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">// [[Rcpp::export]]</pre>
+                    </td>
+                  </tr>
+                  <tr class="covered">
+                    <td class="num">26</td>
+                    <td class="coverage">1<em>x</em></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">Rcpp::NumericMatrix distJSD(const Rcpp::NumericMatrix&amp; inMatrix) {</pre>
+                    </td>
+                  </tr>
+                  <tr class="covered">
+                    <td class="num">27</td>
+                    <td class="coverage">1<em>x</em></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">  size_t rows = inMatrix.nrow();</pre>
+                    </td>
+                  </tr>
+                  <tr class="covered">
+                    <td class="num">28</td>
+                    <td class="coverage">1<em>x</em></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">  Rcpp::NumericMatrix result(rows, rows);</pre>
+                    </td>
+                  </tr>
+                  <tr class="covered">
+                    <td class="num">29</td>
+                    <td class="coverage">101<em>x</em></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">  for (size_t i = 0; i &lt; rows; i++) {</pre>
+                    </td>
+                  </tr>
+                  <tr class="covered">
+                    <td class="num">30</td>
+                    <td class="coverage">5050<em>x</em></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">    for (size_t j = 0; j &lt; i; j++) {</pre>
+                    </td>
+                  </tr>
+                  <tr class="covered">
+                    <td class="num">31</td>
+                    <td class="coverage">4950<em>x</em></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">      result(i,j) = cppJSD(inMatrix(i, Rcpp::_), inMatrix(j, Rcpp::_));</pre>
+                    </td>
+                  </tr>
+                  <tr class="covered">
+                    <td class="num">32</td>
+                    <td class="coverage">4950<em>x</em></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">      result(j,i) = result(i,j);</pre>
+                    </td>
+                  </tr>
+                  <tr class="covered">
+                    <td class="num">33</td>
+                    <td class="coverage">4950<em>x</em></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">      if (i == j) {</pre>
+                    </td>
+                  </tr>
+                  <tr class="missed">
+                    <td class="num">34</td>
+                    <td class="coverage">!</td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">        result(i,j) = 0;</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">35</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">      }</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">36</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">    }</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">37</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">  }</pre>
+                    </td>
+                  </tr>
+                  <tr class="covered">
+                    <td class="num">38</td>
+                    <td class="coverage">1<em>x</em></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">  return result;</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">39</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">}</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">40</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r"></pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">41</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r"></pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">42</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r"></pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">43</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">//' @name distJSD2</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">44</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">//' @title Jensen-Shannon divergence with two inputs</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">45</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">//' </pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">46</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">//' @description Computes Jensen-Shannon divergence, which is based on Kullback-Leibler divergence. deq(\text{JSD}(A||B)=\frac{1}{2} \left( \text{KL}(A||M)+\text{KL}(B||M) \right))</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">47</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">//' </pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">48</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">//' @param inMatrixTr a positive-valued numeric matrix of treated units.</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">49</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">//' @param inMatrixCo a positive-valued numeric matrix of controlled units.</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">50</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">//' @export</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">51</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">// [[Rcpp::export]]</pre>
+                    </td>
+                  </tr>
+                  <tr class="covered">
+                    <td class="num">52</td>
+                    <td class="coverage">1<em>x</em></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">Rcpp::NumericMatrix distJSD2(const Rcpp::NumericMatrix&amp; inMatrixTr, const Rcpp::NumericMatrix&amp; inMatrixCo) {</pre>
+                    </td>
+                  </tr>
+                  <tr class="covered">
+                    <td class="num">53</td>
+                    <td class="coverage">1<em>x</em></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">  size_t rows_tr = inMatrixTr.nrow();</pre>
+                    </td>
+                  </tr>
+                  <tr class="covered">
+                    <td class="num">54</td>
+                    <td class="coverage">1<em>x</em></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">  size_t rows_co = inMatrixCo.nrow();</pre>
+                    </td>
+                  </tr>
+                  <tr class="covered">
+                    <td class="num">55</td>
+                    <td class="coverage">1<em>x</em></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">  Rcpp::NumericMatrix result(rows_tr, rows_co);</pre>
+                    </td>
+                  </tr>
+                  <tr class="covered">
+                    <td class="num">56</td>
+                    <td class="coverage">4<em>x</em></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">  for (size_t i = 0; i &lt; rows_tr; i++) {</pre>
+                    </td>
+                  </tr>
+                  <tr class="covered">
+                    <td class="num">57</td>
+                    <td class="coverage">27<em>x</em></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">    for (size_t j = 0; j &lt; rows_co; j++) {</pre>
+                    </td>
+                  </tr>
+                  <tr class="covered">
+                    <td class="num">58</td>
+                    <td class="coverage">24<em>x</em></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">      result(i,j) = cppJSD(inMatrixTr(i, Rcpp::_), inMatrixCo(j, Rcpp::_));</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">59</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">    }</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">60</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">  }</pre>
+                    </td>
+                  </tr>
+                  <tr class="covered">
+                    <td class="num">61</td>
+                    <td class="coverage">1<em>x</em></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">  return result;</pre>
+                    </td>
+                  </tr>
+                  <tr class="never">
+                    <td class="num">62</td>
+                    <td class="coverage"></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">}</pre>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <script>$('div#files pre').each(function(i, block) {
+    hljs.highlightBlock(block);
+});</script>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
