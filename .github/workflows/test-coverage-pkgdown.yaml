@@ -78,6 +78,12 @@ jobs:
           run: pkgdown::build_site_github_pages(new_process = FALSE, install = FALSE)
           shell: Rscript {0}
 
+        - name: Download covr report
+          uses: actions/download-artifact@v4
+          with:
+            name: covr-report
+            path: docs/coverage_report.html
+
         - name: Deploy to GitHub pages 🚀
           if: github.event_name != 'pull_request'
           uses: JamesIves/github-pages-deploy-action@v4.6.1
@@ -86,9 +92,4 @@ jobs:
             branch: gh-pages
             folder: docs
         
-        - name: Download covr report
-          uses: actions/download-artifact@v4
-          with:
-            name: covr-report
-            path: docs
   
