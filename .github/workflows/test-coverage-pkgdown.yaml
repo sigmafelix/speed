@@ -63,12 +63,6 @@ jobs:
         steps:
         - uses: actions/checkout@v4
 
-        - name: Download covr report
-          uses: actions/download-artifact@v4
-          with:
-            name: covr-report
-            path: .
-
         - uses: r-lib/actions/setup-pandoc@v2
 
         - uses: r-lib/actions/setup-r@v2
@@ -91,3 +85,10 @@ jobs:
             clean: false
             branch: gh-pages
             folder: docs
+        
+        - name: Download covr report
+          uses: actions/download-artifact@v4
+          with:
+            name: covr-report
+            path: docs
+  

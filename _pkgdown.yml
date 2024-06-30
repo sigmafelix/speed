@@ -11,7 +11,7 @@ navbar:
 home:
   links:
   - text: Coverage
-    href: /coverage_report.html
+    href: docs/coverage_report.html
 
 references:
   - subtitle: Core functions
