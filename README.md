@@ -7,10 +7,15 @@
 Spatially-Enhanced and Entropy-Derived Contiguity Matrix (SpEED)
 
 # Installation
-- Requirement: C++ compilers, Rcpp, RcppArmadillo, sf
-- To install this package, please use the command below. It assumes that users have installed `remotes` package
-```{r}
-remotes::install_github('sigmafelix/speed')
+- Requirement: C++ compilers, `Rcpp`, `RcppArmadillo`, `sf`
+- To install this package, please use the command below. It assumes that users have installed `remotes` or `pak` packages:
+
+```r
+remotes::install_github("sigmafelix/speed")
+```
+
+```
+pak::pak("sigmafelix/speed")
 ```
 
 # Concept
