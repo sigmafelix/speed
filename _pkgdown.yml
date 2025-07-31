@@ -16,7 +16,7 @@ references:
   
   - subtitle: Low-level functions
   - contents:
-    - includes("JSD")
+    - includes("jsd")
   
   - subtitle: Helpers
   - contents:
