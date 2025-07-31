@@ -10,3 +10,4 @@ library(testthat)
 library(speed)
 
 test_check("speed")
+

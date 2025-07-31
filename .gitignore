@@ -3,3 +3,6 @@
 .RData
 .Ruserdata
 /experiment
+src/rust/vendor
+src/Makevars
+src/Makevars.win

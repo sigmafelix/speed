@@ -47,10 +47,17 @@ BEGIN_RCPP
 END_RCPP
 }
 
+RcppExport SEXP wrap__dist_jsd_r(void);
+RcppExport SEXP wrap__dist_jsd2_r(void);
+RcppExport SEXP wrap__jsd_r(void);
+
 static const R_CallMethodDef CallEntries[] = {
     {"_speed_cppJSD", (DL_FUNC) &_speed_cppJSD, 2},
     {"_speed_distJSD", (DL_FUNC) &_speed_distJSD, 1},
     {"_speed_distJSD2", (DL_FUNC) &_speed_distJSD2, 2},
+    {"wrap__dist_jsd_r",  (DL_FUNC) &wrap__dist_jsd_r,  0},
+    {"wrap__dist_jsd2_r", (DL_FUNC) &wrap__dist_jsd2_r, 0},
+    {"wrap__jsd_r",       (DL_FUNC) &wrap__jsd_r,       0},
     {NULL, NULL, 0}
 };
 

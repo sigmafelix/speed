@@ -1,23 +1,22 @@
 ### SpEED function code
 #' @export
 speedmat_legacy <- function(sf,
-                     mode = "CDE", # "CE"/"DE"/"CDE"
-                     input_vars = c(), # Contiguity Distance Entropy
-                     bandwidth = NULL, # bandwidth: Currently only supports gaussian
-                     q_jsd = 0.05,     # quantile of j-s divergence
-                     kneigh = NULL,    # k-nearest neighbor for point data
-                     queen = TRUE,     # Queen's contiguity for "C" mode for polygon data
-                     cutoff_dist = NULL,
-                     cutoff_weightd = 0.001,
-                     cutoff_weightc = 0.001,
-                     sup_factor = 0.5) {
-  if (is.null(bandwidth) && grepl("D", mode))
-    stop("No bandwidth was entered")
-  if (length(input_vars) == 0)
-    stop("No input variable were specified")
-  if (!grepl("E", mode))
-    stop("Please use the methods for standard spatial weight matrices for
-     non-entropy matrices")
+                            mode = "CDE", # "CE"/"DE"/"CDE"
+                            input_vars = c(), # Contiguity Distance Entropy
+                            bandwidth = NULL, # bandwidth: Currently only supports gaussian
+                            q_jsd = 0.05, # quantile of j-s divergence
+                            kneigh = NULL, # k-nearest neighbor for point data
+                            queen = TRUE, # Queen's contiguity for "C" mode for polygon data
+                            cutoff_dist = NULL,
+                            cutoff_weightd = 0.001,
+                            cutoff_weightc = 0.001,
+                            sup_factor = 0.5) {
+  if (is.null(bandwidth) && grepl("D", mode)) stop("No bandwidth was entered")
+  if (length(input_vars) == 0) stop("No input variable were specified")
+  if (!grepl("E", mode)) stop(
+    "Please use the methods for standard spatial weight matrices for
+     non-entropy matrices"
+  )
   if (!is.null(bandwidth)) {
     cutoff_dist <- bandwidth
   }
@@ -26,29 +25,30 @@ speedmat_legacy <- function(sf,
   sf_ent <- sf |>
     dplyr::select(input_vars) |>
     sf::st_set_geometry(NULL) |>
-    dplyr::mutate_at(.vars = dplyr::vars(input_vars),
-                     .funs = list(~as.vector(scale(.)))) |>
-    dplyr::mutate_at(.vars = dplyr::vars(dplyr::everything()),
-                     .funs = list(~. + abs(min(.)))) |>
+    dplyr::mutate_at(.vars = dplyr::vars(input_vars), .funs = list(~ as.vector(scale(.)))) |>
+    dplyr::mutate_at(.vars = dplyr::vars(dplyr::everything()), .funs = list(~ . + abs(min(.)))) |>
     as.matrix() |>
     philentropy::JSD()
   sf_ent <- sf_ent * (sf_ent <= quantile(sf_ent, q_jsd))
   sf_ent_ex <- exp(-1 * sf_ent)
   sf_ent_f <- (sf_ent_ex * (sf_ent_ex != 1))
 
-  if (grepl("C", mode)){
-    if (queen){
+  if (grepl("C", mode)) {
+    if (queen) {
       pat <- 'F***T****'
     } else {
       pat <- 'F***1****'
     }
 
-    if (any(sf::st_is(sfp, 'POLYGON'),
-            sf::st_is(sfp, 'MULTIPOLYGON'),
-            sf::st_is(sfp, "POLYGON Z"),
-            sf::st_is(sfp, "MULTIPOLYGON Z"))) {
-      sf_touch <-
-        sf::st_relate(sf, pattern = pat) |> #poly2nb(sf, queen = queen) %>%
+    if (
+      any(
+        sf::st_is(sfp, 'POLYGON'),
+        sf::st_is(sfp, 'MULTIPOLYGON'),
+        sf::st_is(sfp, "POLYGON Z"),
+        sf::st_is(sfp, "MULTIPOLYGON Z")
+      )
+    ) {
+      sf_touch <- sf::st_relate(sf, pattern = pat) |> #poly2nb(sf, queen = queen) %>%
         as("matrix")
       sf_touch_ <- sf_touch
     } else {
@@ -58,29 +58,37 @@ speedmat_legacy <- function(sf,
       diag(sf_touch_nn) <- FALSE
       sf_touch <- sf_touch_nn
     }
-  # 122820
-  sf_invdv <- ((1-sup_factor)*sf_touch) + (sup_factor * sf_ent_f)
+    # 122820
+    sf_invdv <- ((1 - sup_factor) * sf_touch) + (sup_factor * sf_ent_f)
   }
   if (grepl("D", mode)) {
-    if (any(sf::st_is(sfp, 'POLYGON'),
-            sf::st_is(sfp, 'MULTIPOLYGON'),
-            sf::st_is(sfp, "POLYGON Z"),
-            sf::st_is(sfp, "MULTIPOLYGON Z"))) {
+    if (
+      any(
+        sf::st_is(sfp, 'POLYGON'),
+        sf::st_is(sfp, 'MULTIPOLYGON'),
+        sf::st_is(sfp, "POLYGON Z"),
+        sf::st_is(sfp, "MULTIPOLYGON Z")
+      )
+    ) {
       sf_interd <- as(sf::st_distance(sf::st_centroid(sf)), 'matrix')
     } else {
       sf_interd <- as(sf::st_distance(sf), 'matrix')
     }
 
     sf_interd <- sf_interd * (sf_interd <= cutoff_dist)
-    sf_invd <- exp(-1 * ((sf_interd ^ 2) / (bandwidth ^ 2)))
+    sf_invd <- exp(-1 * ((sf_interd^2) / (bandwidth^2)))
     sf_invd <- sf_invd * (sf_invd != 1)
     diag(sf_invd) <- 0
 
     if (grepl("^C", mode)) {
-      if (!any(sf::st_is(sfp, 'POLYGON'),
-               sf::st_is(sfp, 'MULTIPOLYGON'),
-               sf::st_is(sfp, "POLYGON Z"),
-               sf::st_is(sfp, "MULTIPOLYGON Z"))) {
+      if (
+        !any(
+          sf::st_is(sfp, 'POLYGON'),
+          sf::st_is(sfp, 'MULTIPOLYGON'),
+          sf::st_is(sfp, "POLYGON Z"),
+          sf::st_is(sfp, "MULTIPOLYGON Z")
+        )
+      ) {
         sf_touch_ <- sf_touch
         sf_touch_d <- do.call(c, sf_touch_$dist)
         sf_touch_d <- sf_touch_d[sf_touch_d != 0]
@@ -88,13 +96,10 @@ speedmat_legacy <- function(sf,
         sf_touch <- sf_touch_nn
       }
 
-      sf_invdv <-
-        ((1 - sup_factor) * (sf_touch * sf_invd)) + (sup_factor * sf_ent_f)
-      sf_invdv <-
-        sf_invdv * (sf_invdv >= cutoff_weightc)
+      sf_invdv <- ((1 - sup_factor) * (sf_touch * sf_invd)) + (sup_factor * sf_ent_f)
+      sf_invdv <- sf_invdv * (sf_invdv >= cutoff_weightc)
     } else {
-      sf_invdv <-
-        ((1-sup_factor)* (sf_invd * (sf_invd >= cutoff_weightd))) + (sup_factor * sf_ent_f)
+      sf_invdv <- ((1 - sup_factor) * (sf_invd * (sf_invd >= cutoff_weightd))) + (sup_factor * sf_ent_f)
       sf_invdv <- sf_invdv * (sf_invdv >= cutoff_weightc)
     }
   }
@@ -109,13 +114,13 @@ speedmat_legacy <- function(sf,
   return(speedmat)
 }
 
-
 #' Max-Min scaling
 #' @param x numeric vector
 #' @returns numeric vector
 #' @export
-scale_minmax <- function(x) {(x - min(x)) / (max(x) - min(x))}
-
+scale_minmax <- function(x) {
+  (x - min(x)) / (max(x) - min(x))
+}
 
 #' @title SpEED matrix for matching analysis
 #' @description Returns spatially enhanced and entropy-derived matrix (SpEED)
@@ -159,35 +164,34 @@ speedmat <- function(data,
     Check if you set the correct value for mode_speed\n")
   }
 
-  speedmat_res <-
-    switch(mode_speed,
-           product = speedmat.jsdist(data,
-                                     formula,
-                                     outcome,
-                                     treatment,
-                                     caliper_s = caliper_s,
-                                     caliper_jsd = caliper_jsd,
-                                     scale = scale),
-           product2 = speedmat.jsdist.m(data,
-                                        formula,
-                                        outcome,
-                                        treatment,
-                                        caliper_s = caliper_s,
-                                        caliper_jsd = caliper_jsd,
-                                        scale = scale),
-           coord = speedmat.coord(data,
-                                  formula,
-                                  outcome,
-                                  treatment,
-                                  coords,
-                                  coords_factor))
+  speedmat_res <- switch(
+    mode_speed,
+    product = speedmat.jsdist(
+      data,
+      formula,
+      outcome,
+      treatment,
+      caliper_s = caliper_s,
+      caliper_jsd = caliper_jsd,
+      scale = scale
+    ),
+    product2 = speedmat.jsdist.m(
+      data,
+      formula,
+      outcome,
+      treatment,
+      caliper_s = caliper_s,
+      caliper_jsd = caliper_jsd,
+      scale = scale
+    ),
+    coord = speedmat.coord(data, formula, outcome, treatment, coords, coords_factor)
+  )
   return(speedmat_res)
 }
 
-
 #' @title SpEED matrix by accounting for the weighted coordinate variables
 #' @description Returns the Jensen-Shannon divergence with weighted coordinates
-#' @param data sf object. Should include outcome, treatment, and coordinates 
+#' @param data sf object. Should include outcome, treatment, and coordinates
 #' @param formula formula. in \code{y ~ x} form.
 #' @param outcome character(1). Outcome variable name.
 #' Default is \code{'outcome'}
@@ -195,35 +199,32 @@ speedmat <- function(data,
 #' Default is \code{'treatment'}
 #' @param coords character(2). Names of the columns with x- and y-dimension
 #' coordinates.
-#' @param coords_factor numeric(1). Coordinate weights after standardization. 
+#' @param coords_factor numeric(1). Coordinate weights after standardization.
 #' @author Insang Song (sigmafelix@hotmail.com)
 #' @export
-speedmat.coord <-
-  function(data,
-           formula,
-           outcome = 'outcome',
-           treatment = 'treatment',
-           coords = c('X', 'Y'),
-           coords_factor = 10L) {
+speedmat.coord <- function(data,
+                           formula,
+                           outcome = 'outcome',
+                           treatment = 'treatment',
+                           coords = c('X', 'Y'),
+                           coords_factor = 10L) {
+  mat_mm <- model.matrix(formula, data)[, -1]
 
-    mat_mm <- model.matrix(formula, data)[, -1]
+  formula_ext <- formula
+  mat_mf <- model.frame(formula_ext, data)
+  # 092422
+  mat_mf <- mat_mf[, sapply(mat_mf, function(x) length(unique(x)) != 0)]
 
-    formula_ext <- formula
-    mat_mf <- model.frame(formula_ext, data)
-    # 092422
-    mat_mf <- mat_mf[, sapply(mat_mf, function(x) length(unique(x)) != 0)]
+  print(dim(mat_mf))
+  mat_mmsc <- mat_mm |> apply(2, function(x) scale_minmax(x) + 0.001)
 
-    print(dim(mat_mf))
-    mat_mmsc <- mat_mm |>
-      apply(2, function(x) scale_minmax(x) + 0.001)
-
-    mat_mmsc[, coords] <- mat_mmsc[, coords] * coords_factor
-    mat_jsd <- distJSD(t(mat_mmsc))
-    mat_jsdt <- t(mat_jsd)
-    mat_jsd <- mat_jsd + mat_jsdt
-    gc()
-    return(mat_jsd) #mat_jsd instead?
-
+  mat_mmsc[, coords] <- mat_mmsc[, coords] * coords_factor
+  mat_jsd <- dist_jsd_r(mat_mmsc)
+  # mat_jsd <- distJSD(t(mat_mmsc))
+  mat_jsdt <- t(mat_jsd)
+  mat_jsd <- mat_jsd + mat_jsdt
+  gc()
+  return(mat_jsd) #mat_jsd instead?
 }
 
 #' @title SpEED matrix by multiplying Jensen-Shannon divergence and
@@ -252,7 +253,6 @@ speedmat.jsdist <- function(data,
                             caliper_jsd = NULL,
                             scale = FALSE,
                             zero_adjust = 1) {
-
   mat_mm <- model.matrix(formula, data)[, -1]
 
   formula_ext <- formula
@@ -264,7 +264,8 @@ speedmat.jsdist <- function(data,
   cat(sprintf("Valid data dimension: [%d, %d]\n", mat_mf_dim[1], mat_mf_dim[2]))
   mat_mmsc <- apply(mat_mm, 2, function(x) scale_minmax(x) + zero_adjust)
 
-  mat_jsd <- distJSD(mat_mmsc)
+  mat_jsd <- dist_jsd_r(mat_mmsc)
+  # mat_jsd <- distJSD(mat_mmsc)
 
   mat_geodist <- sf::st_distance(data) # meters
   mat_geodist <- units::drop_units(mat_geodist)
@@ -284,9 +285,7 @@ speedmat.jsdist <- function(data,
   # Hadamard product
   mat_jsdd <- mat_jsd * mat_geodist_sc
   return(mat_jsdd) #mat_jsd instead?
-
 }
-
 
 #' @title SpEED matrix by multiplying Jensen-Shannon divergence and
 #'  geodesic distance (in km) -- efficient version
@@ -313,11 +312,12 @@ speedmat.jsdist.m <- function(data,
                               caliper_jsd = NULL,
                               scale = FALSE,
                               zero_adjust = 1) {
-
   if (length(unique(data[[treatment]])) < 2) {
-    stop("The data appears to have less than two treatment values.
+    stop(
+      "The data appears to have less than two treatment values.
     Please check your data has relevant values in the treatment column
-    (suggestion: 0/1).")
+    (suggestion: 0/1)."
+    )
   }
 
   indx_tr <- which(data[[treatment]] > 0)
@@ -335,10 +335,11 @@ speedmat.jsdist.m <- function(data,
 
   print(dim(mat_mf))
   mat_mmsc <- apply(mat_mm, 2, function(x) scale_minmax(x) + zero_adjust)
-  mat_mm_tr <- mat_mmsc[indx_tr,]
-  mat_mm_co <- mat_mmsc[indx_co,]
+  mat_mm_tr <- mat_mmsc[indx_tr, ]
+  mat_mm_co <- mat_mmsc[indx_co, ]
 
-  mat_jsd <- distJSD2(mat_mm_tr, mat_mm_co)
+  mat_jsd <- dist_jsd2_r(mat_mm_tr, mat_mm_co)
+  # mat_jsd <- distJSD2(mat_mm_tr, mat_mm_co)
 
   mat_geodist <- sf::st_distance(data_tr, data_co)
   mat_geodist <- units::drop_units(mat_geodist)
@@ -358,9 +359,7 @@ speedmat.jsdist.m <- function(data,
   # Hadamard product
   mat_jsdd <- mat_jsd * mat_geodist_sc
   return(mat_jsdd)
-
 }
-
 
 #' @title Plot the distribution of geographic distance and
 #'  Jensen-Shannon divergence
@@ -375,15 +374,13 @@ speedmat.jsdist.m <- function(data,
 #' @author Insang Song (sigmafelix@hotmail.com)
 #' @import ggplot2
 #' @export
-plot_dists <- function(mode = "infunc",
-                       data = NULL,
-                       formula = NULL,
-                       outcome = NULL,
-                       treatment = NULL) {
+plot_dists <- function(mode = "infunc", data = NULL, formula = NULL, outcome = NULL, treatment = NULL) {
   if (length(unique(data[[treatment]])) < 2) {
-    stop("The data appears to have less than two treatment values.
+    stop(
+      "The data appears to have less than two treatment values.
     Please check your data has relevant values in the treatment column
-    (suggestion: 0/1).")
+    (suggestion: 0/1)."
+    )
   }
   if (!mode %in% c("infunc", "independent")) {
     stop("mode argument should be one of 'infunc' or 'independent.'\n")
@@ -410,10 +407,10 @@ plot_dists <- function(mode = "infunc",
 
     vec_jsd <- as.vector(distJSD2(mat_mm_tr, mat_mm_co))
 
-    mat_geodist <- sf::st_distance(data_tr, data_co) 
+    mat_geodist <- sf::st_distance(data_tr, data_co)
     vec_geodist <- as.vector(units::drop_units(mat_geodist))
   } else {
-    mat_geodist <- sf::st_distance(data_tr, data_co) 
+    mat_geodist <- sf::st_distance(data_tr, data_co)
     vec_geodist <- as.vector(units::drop_units(mat_geodist))
   }
 
@@ -424,9 +421,9 @@ plot_dists <- function(mode = "infunc",
     )
   )
 
-  ggplot2::ggplot(data = data_dist,
-         mapping = aes(x = value, color = disttype)) +
+  ggplot2::ggplot(data = data_dist, mapping = aes(x = value, color = disttype)) +
     ggplot2::theme_bw() +
     ggplot2::geom_histogram(bins = 100) +
     ggplot2::facet_wrap(~disttype, scales = "free")
 }
+
